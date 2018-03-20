@@ -1,0 +1,32 @@
+package com.kokoroguruma.musicsitefragmenthotta;
+
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.widget.ProgressBar;
+
+/**
+ * Created by Kokoroguruma on 2018/03/20.
+ */
+
+public class Acsess {
+
+
+
+    public Acsess(Context a) {
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}

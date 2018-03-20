@@ -6,4 +6,15 @@
     android:layout_height="match_parent"
     tools:context="com.kokoroguruma.musicsitefragmenthotta.MainActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <fragment
+            android:name="com.kokoroguruma.musicsitefragmenthotta.LoginFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>
