@@ -1,6 +1,7 @@
 package com.kokoroguruma.musicsitefragmenthotta;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -29,20 +30,35 @@ public class LoginFragment extends Fragment {
 
         application = (MyApplication) getActivity().getApplication();
 
+
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_login, container, false);
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-
-        this.onClickLoginIntentRegistButton();
-
         super.onViewCreated(view, savedInstanceState);
+
+        this.onClickList();
+
     }
 
+    // ここからClick用
+    private void onClickList() {
+        this.onClickLoginSubmitButton();
+        this.onClickLoginIntentRegistButton();
+    }
+
+
     private void onClickLoginSubmitButton() {
-        // 文字チェックしてPlayに切り替え
+        Button button = getActivity().findViewById(R.id.loginSubmitButton);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                application.login();
+            }
+        });
     }
 
 
@@ -51,7 +67,9 @@ public class LoginFragment extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                application.getMainActivity().setMainFragment(new RegistFragment());
+                // Regist画面を開く
+                Intent intent = new Intent(getContext(), RegistActivity.class);
+                startActivity(intent);
             }
         });
     }

@@ -1,21 +1,37 @@
 <resources>
     <string name="app_name">MusicSiteFragmentHotta</string>
 
+    <string name="loginTitleText">ようこそ、ログインしてください。</string>
     <string name="loginIdTextHint">id</string>
     <string name="loginPassTextHint">password</string>
     <string name="loginSubmitButtonText">ログイン</string>
     <string name="loginIntentRegistButtonText">新規登録</string>
 
+    <string name="registTitleText">新規登録</string>
     <string name="registIdTextHint">id</string>
     <string name="registPassTextHint">password</string>
     <string name="registMailTextHint">Mail</string>
     <string name="registSubmitButtonText">登録</string>
 
+    <string name="playingViewTitleText">再生Title</string>
+    <string name="playingBackButtonText">｜＜</string>
+    <string name="playingPlayButtonText">＞</string>
+    <string name="playingStopButtonText">□</string>
+    <string name="playingPauseButtonText">｜｜</string>
+    <string name="playingNextButtonText">＞｜</string>
 
+
+    <string name="addMusicTitleText">音声登録</string>
+    <string name="addMusicNameTextHint">曲名</string>
+    <string name="addMusicUrlTextHint">Url</string>
+    <string name="addMusicCommentTextHint">コメント（空白可）</string>
     <string name="addMusicSubmitButton">登録</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="listPlayingTitleText">タイトル</string>
+    <string name="listPlayingCommentText">コメント</string>
+
+    <string name="menuAddMusicText">音声追加</string>
+    <string name="menuLogoutText">ログアウト</string>
 
 
 </resources>

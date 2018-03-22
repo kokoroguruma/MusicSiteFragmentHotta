@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
     tools:context="com.kokoroguruma.musicsitefragmenthotta.PlayPlayingViewFragment">
 
-    <!-- TODO: Update blank fragment layout -->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,50 +11,50 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/playingViewTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="再生中Title" />
+            android:text="@string/playingViewTitleText" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/button5"
+                android:id="@+id/playingBackButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="｜＜" />
+                android:text="@string/playingBackButtonText" />
 
             <Button
-                android:id="@+id/button6"
+                android:id="@+id/playingPlayButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="＞" />
+                android:text="@string/playingPlayButtonText" />
 
             <Button
-                android:id="@+id/button7"
+                android:id="@+id/playingStopButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="□" />
+                android:text="@string/playingStopButtonText" />
 
             <Button
-                android:id="@+id/button8"
+                android:id="@+id/playingPauseButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="｜｜" />
+                android:text="@string/playingPauseButtonText" />
 
             <Button
-                android:id="@+id/button9"
+                android:id="@+id/playingNextButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="＞｜" />
+                android:text="@string/playingNextButtonText" />
         </LinearLayout>
     </LinearLayout>
 </FrameLayout>

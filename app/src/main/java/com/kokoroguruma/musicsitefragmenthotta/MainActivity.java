@@ -2,21 +2,23 @@ package com.kokoroguruma.musicsitefragmenthotta;
 
 import android.app.ActionBar;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
     MyApplication application;
 
-    ActionBar actionBar;
     FragmentManager fragmentManager;
+
+    Boolean menuVisibllityFlag = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,61 +28,36 @@ public class MainActivity extends AppCompatActivity {
         application = (MyApplication) this.getApplication();
         application.setMainActivity(this);
 
-        actionBar = getActionBar();
+
         fragmentManager = getSupportFragmentManager();
 
         this.startMainFragment();
 
-//        this.onClickImplementsList();
 
     }
 
-
     // 開始時画面
     private void startMainFragment() {
+        // TODO: ログイン状態をチェックして場合によってLoginFragment、PlayFragmentへ移動
         this.setMainFragment(new LoginFragment());
     }
 
 
 
 
-
-    // ここからOnClick系列
-    private void onClickImplementsList() {
-        this.onClickLoginSubmitButton();
-        this.onClickLoginIntentRegistButton();
-        this.onClickRegistSubmitButton();
-
+    // ここからmenu管理
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        if (menuVisibllityFlag) {
+            MenuInflater menuInflater = getMenuInflater();
+            menuInflater.inflate(R.menu.menu, menu);
+        }
+        return super.onCreateOptionsMenu(menu);
     }
 
-
-
-    private void onClickLoginSubmitButton() {
-        // 文字チェックしてPlayに切り替え
+    public void setMenuVisibllityFlag(Boolean ins_menuVisibllityFlag) {
+        this.menuVisibllityFlag = ins_menuVisibllityFlag;
     }
-
-
-    private void onClickLoginIntentRegistButton() {
-        Button button = findViewById(R.id.loginIntentRegistButton);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setMainFragment(new RegistFragment());
-            }
-        });
-    }
-
-
-    private void onClickRegistSubmitButton() {
-        Button button = findViewById(R.id.registSubmitButton);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setMainFragment(new LoginFragment());
-            }
-        });
-    }
-
 
 
 
@@ -89,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     // ここからFragmentの管理
-
 
     /**
      * mainFragmentの切り替え用
@@ -102,19 +78,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void showRegistFragment() {
-        actionBar.setHomeButtonEnabled(true);
-        actionBar.setDisplayHomeAsUpEnabled(true);
-    }
-
-    private void unShowRegistFragment() {
-        actionBar.setDisplayHomeAsUpEnabled(false);
-        actionBar.setHomeButtonEnabled(false);
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.menuAddMusic:
+                // 音声追加画面へ
+                Intent intent = new Intent(getApplicationContext(), AddMusicActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.menuLogout:
+                // ログアウト
+                application.logout();
+                break;
             case android.R.id.home:
                 // 戻る。
                 this.setMainFragment(new LoginFragment());

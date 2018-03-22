@@ -11,12 +11,10 @@ import android.view.ViewGroup;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MainFragment extends Fragment {
-
-    MyApplication application;
+public class BlankFragment extends Fragment {
 
 
-    public MainFragment() {
+    public BlankFragment() {
         // Required empty public constructor
     }
 
@@ -24,22 +22,8 @@ public class MainFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-
-        application = (MyApplication) getActivity().getApplication();
-//        application.getMainActivity().setM
-
-
-
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_main, container, false);
+        return inflater.inflate(R.layout.fragment_blank, container, false);
     }
-
-
-
-
-
-
-
 
 }

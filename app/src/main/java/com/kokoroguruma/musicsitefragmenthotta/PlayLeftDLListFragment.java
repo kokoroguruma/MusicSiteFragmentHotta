@@ -9,6 +9,9 @@ import android.view.ViewGroup;
 
 
 /**
+ * 左から出てくるフラグメント
+ * Listに登録出来る音声リストが出てくる。
+ * リストはカスタマイズで～
  * A simple {@link Fragment} subclass.
  */
 public class PlayLeftDLListFragment extends Fragment {

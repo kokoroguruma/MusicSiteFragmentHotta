@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 
 
 /**
+ * 再生中の音声の追加コメントリストが表示される。
+ * また、自分から追加も出来る。
  * A simple {@link Fragment} subclass.
  */
 public class PlayRightCommentListFragment extends Fragment {
