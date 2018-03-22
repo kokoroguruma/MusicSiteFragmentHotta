@@ -1,10 +1,10 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.kokoroguruma.musicsitefragmenthotta.LoginFragment">
-
-    <!-- TODO: Update blank fragment layout -->
+    tools:context="com.kokoroguruma.musicsitefragmenthotta.AddMusicActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,49 +12,47 @@
         android:orientation="vertical">
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/loginIdLayout"
+            android:id="@+id/addMusicNameLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <android.support.design.widget.TextInputEditText
-                android:id="@+id/loginIdText"
+                android:id="@+id/addMusicNameText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/loginIdTextHint"
-                android:singleLine="true" />
+                android:hint="曲名" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/loginPassLayout"
+            android:id="@+id/addMusicUrlLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <android.support.design.widget.TextInputEditText
-                android:id="@+id/loginPassText"
+                android:id="@+id/addMusicUrlText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/loginPassTextHint"
-                android:inputType="textPassword"
-                android:singleLine="true" />
+                android:hint="Url" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/addMusicCommentLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/addMusicCommentText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="コメント" />
         </android.support.design.widget.TextInputLayout>
 
         <Button
-            android:id="@+id/loginSubmitButton"
+            android:id="@+id/addMusicSubmitButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/loginSubmitButtonText" />
-
-        <View
-            android:id="@+id/loginSeparator"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/darker_gray" />
-
-        <Button
-            android:id="@+id/loginIntentRegistButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/loginIntentRegistButtonText" />
-
+            android:text="@string/addMusicSubmitButton" />
     </LinearLayout>
-</FrameLayout>
+
+
+</android.support.constraint.ConstraintLayout>

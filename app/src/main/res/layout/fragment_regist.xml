@@ -12,39 +12,45 @@
         android:orientation="vertical">
 
         <android.support.design.widget.TextInputLayout
+            android:id="@+id/registIdLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <android.support.design.widget.TextInputEditText
+                android:id="@+id/registIdText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="id" />
+                android:hint="@string/registIdTextHint" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
+            android:id="@+id/registPassLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <android.support.design.widget.TextInputEditText
+                android:id="@+id/registPassText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="password" />
+                android:hint="@string/registPassTextHint" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
+            android:id="@+id/registMailLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <android.support.design.widget.TextInputEditText
+                android:id="@+id/registMailText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="mail" />
+                android:hint="@string/registMailTextHint" />
         </android.support.design.widget.TextInputLayout>
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/registSubmitButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Button" />
+            android:text="@string/registSubmitButtonText" />
     </LinearLayout>
 </FrameLayout>

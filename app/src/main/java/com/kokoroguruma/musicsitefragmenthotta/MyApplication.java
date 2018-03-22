@@ -7,4 +7,19 @@ import android.app.Application;
  */
 
 public class MyApplication extends Application {
+
+    private MainActivity mainActivity;
+
+
+    public void setMainActivity(MainActivity ins_mainActivity) {
+        this.mainActivity = ins_mainActivity;
+    }
+
+    public MainActivity getMainActivity() {
+        return mainActivity;
+    }
+
+
+
+
 }

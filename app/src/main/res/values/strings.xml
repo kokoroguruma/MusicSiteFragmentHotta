@@ -1,9 +1,21 @@
 <resources>
     <string name="app_name">MusicSiteFragmentHotta</string>
 
+    <string name="loginIdTextHint">id</string>
+    <string name="loginPassTextHint">password</string>
+    <string name="loginSubmitButtonText">ログイン</string>
+    <string name="loginIntentRegistButtonText">新規登録</string>
+
+    <string name="registIdTextHint">id</string>
+    <string name="registPassTextHint">password</string>
+    <string name="registMailTextHint">Mail</string>
+    <string name="registSubmitButtonText">登録</string>
+
+
+    <string name="addMusicSubmitButton">登録</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-    <string name="loginSubmitButtonText">ログイン</string>
 
 </resources>

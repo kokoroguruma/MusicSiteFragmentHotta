@@ -12,7 +12,8 @@
         android:orientation="vertical">
 
         <fragment
-            android:name="com.kokoroguruma.musicsitefragmenthotta.LoginFragment"
+            android:id="@+id/mainFragment"
+            android:name="com.kokoroguruma.musicsitefragmenthotta.MainFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>
