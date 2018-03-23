@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -53,31 +54,46 @@ public class PlayFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 
 
-        this.setFragments();
-
         super.onViewCreated(view, savedInstanceState);
     }
 
 
-
+    @Override
+    public void onResume() {
+        Log.d("PlayFragment: ","onResume()");
+        this.setFragmentsInViewPager();
+        super.onResume();
+    }
 
     // ここからViewPager
-    private void setFragments() {
+    private void setFragmentsInViewPager() {
+        Log.d("PlayFragment: ","setFragmentsInViewPager(): ");
         ViewPager viewPager = getActivity().findViewById(R.id.playViewPager);
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         PlayFragmentPagerAdapter adapter = new PlayFragmentPagerAdapter(fragmentManager);
         viewPager.setAdapter(adapter);
         viewPager.setCurrentItem(1);
+        Log.d("PlayFragment: ","setFragmentsInViewPager(): "+ viewPager.getAdapter());
+    }
+
+    private void updateFragmentInViewPager() {
+        ViewPager viewPager = getActivity().findViewById(R.id.playViewPager);
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        PlayFragmentPagerAdapter adapter = new PlayFragmentPagerAdapter(fragmentManager);
+        adapter.notifyDataSetChanged();
     }
 
 
-    private class PlayFragmentPagerAdapter extends FragmentPagerAdapter {
+    // 更新対策にStateを利用。これを使うことで毎回新規作成する？
+    // FragmentPagerAdapter → FragmentStatePagerAdapter
+    private class PlayFragmentPagerAdapter extends FragmentStatePagerAdapter {
         public PlayFragmentPagerAdapter(FragmentManager fm) {
             super(fm);
         }
 
         @Override
         public Fragment getItem(int position) {
+            Log.d("PlayFragment: ","PagerAdapter: getItem: " + position);
             Fragment fragment = null;
             switch (position) {
                 case 0:
