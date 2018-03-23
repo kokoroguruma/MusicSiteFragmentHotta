@@ -69,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
 
     // 開始時画面
     private void mainFragment() {
-        // TODO: ログイン状態をチェックして場合によってLoginFragment、PlayFragmentへ移動
         if (application.getLoginFlag()) {
             this.setMainFragment(new PlayFragment());
         } else {

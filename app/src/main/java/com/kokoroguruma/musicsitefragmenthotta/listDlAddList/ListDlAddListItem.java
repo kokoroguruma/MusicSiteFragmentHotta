@@ -1,12 +1,12 @@
-package com.kokoroguruma.musicsitefragmenthotta.listPlayCenterList;
+package com.kokoroguruma.musicsitefragmenthotta.listDlAddList;
 
 import android.widget.Button;
 
 /**
- * Created by Kokoroguruma on 2018/03/22.
+ * Created by Kokoroguruma on 2018/03/23.
  */
 
-public class ListPlayCenterListItem {
+public class ListDlAddListItem {
 
 
     private int musicId;
@@ -17,15 +17,14 @@ public class ListPlayCenterListItem {
 
     private String musicComment;
 
-    private Button listPlayingDeleteButton;
+    private Button listDlAddButton;
 
-    private Button listPlayingPlayButton;
 
-    public ListPlayCenterListItem(int ins_musicId, String ins_musicName, String ins_musicUrl) {
+    public ListDlAddListItem(int ins_musicId, String ins_musicName, String ins_musicUrl) {
         this(ins_musicId, ins_musicName, ins_musicUrl, "");
     }
 
-    public ListPlayCenterListItem(int ins_musicId, String ins_musicName, String ins_musicUrl, String ins_musicComment) {
+    public ListDlAddListItem(int ins_musicId, String ins_musicName, String ins_musicUrl, String ins_musicComment) {
         this.musicId = ins_musicId;
         this.musicName = ins_musicName;
         this.musicUrl = ins_musicUrl;
@@ -47,6 +46,4 @@ public class ListPlayCenterListItem {
     public String getMusicComment() {
         return musicComment;
     }
-
-
 }

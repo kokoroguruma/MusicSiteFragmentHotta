@@ -33,7 +33,7 @@ public class PlayCenterPlayingListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        Log.d("test", "aaaa");
+        Log.d("PlayCenter: ", "onCreateView: ");
 
 
         // Inflate the layout for this fragment
@@ -51,7 +51,7 @@ public class PlayCenterPlayingListFragment extends Fragment {
     }
 
     private void setList() {
-        ListView listView = getActivity().findViewById(R.id.playCenterList);
+        ListView listView = getView().findViewById(R.id.playCenterList);
 
         ArrayList<ListPlayCenterListItem> arrayList = new ArrayList<ListPlayCenterListItem>();
 

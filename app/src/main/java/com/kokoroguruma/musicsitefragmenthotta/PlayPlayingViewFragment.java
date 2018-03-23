@@ -3,6 +3,7 @@ package com.kokoroguruma.musicsitefragmenthotta;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,50 +38,55 @@ public class PlayPlayingViewFragment extends Fragment {
     }
 
     private void onClickPlayingBackButton() {
-        Button button = getActivity().findViewById(R.id.playingBackButton);
+        Button button = getView().findViewById(R.id.playingBackButton);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d("PlayPlaingView-ment: ","onClickBack(): ");
                 // TODO: Backボタン処理
             }
         });
     }
 
     private void onClickPlayingPlayButton() {
-        Button button = getActivity().findViewById(R.id.playingPlayButton);
+        Button button = getView().findViewById(R.id.playingPlayButton);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d("PlayPlaingView-ment: ","onClickPlay(): ");
                 // TODO: Playボタン処理
             }
         });
     }
 
     private void onClickPlayingStopButton() {
-        Button button = getActivity().findViewById(R.id.playingStopButton);
+        Button button = getView().findViewById(R.id.playingStopButton);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d("PlayPlaingView-ment: ","onClickStop(): ");
                 // TODO: Stopボタン処理
             }
         });
     }
 
     private void onClickPlayingPauseButton() {
-        Button button = getActivity().findViewById(R.id.playingPauseButton);
+        Button button = getView().findViewById(R.id.playingPauseButton);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d("PlayPlaingView-ment: ","onClickPause(): ");
                 // TODO: Pauseボタン処理
             }
         });
     }
 
     private void onClickPlayingNextButton() {
-        Button button = getActivity().findViewById(R.id.playingNextButton);
+        Button button = getView().findViewById(R.id.playingNextButton);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d("PlayPlaingView-ment: ","onClickNext(): ");
                 // TODO: Nextボタン処理
             }
         });

@@ -65,12 +65,24 @@ public class ListPlayCenterListAdapter extends BaseAdapter {
         listPlayingCommentView.setText(this.listPlayCenterListItemList.get(position).getMusicComment());
 
 
-        final Button button = convertView.findViewById(R.id.listPlayingPlayButton);
-        button.setTag(position);
-        button.setOnClickListener(new View.OnClickListener() {
+        Button deleteButton = convertView.findViewById(R.id.listPlayingDeleteButton);
+        deleteButton.setTag(position);
+        deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("listPlayingPlayButton","リストのボタン押された。"+button.getTag().toString());
+                Log.d("ListPlayCen-Adapter: ","listPlayingDeleteButton押された。deleteButton: " + v.getClass());
+                Log.d("ListPlayCen-Adapter: ","listPlayingDeleteButton押された。deleteButton: " + v.getTag());
+                // TODO: リスト内のボタン動作。削除する。
+            }
+        });
+
+        Button playButton = convertView.findViewById(R.id.listPlayingPlayButton);
+        playButton.setTag(position);
+        playButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("ListPlayCen-Adapter: ","listPlayingPlayButton押された。playButton: " + v.getClass());
+                Log.d("ListPlayCen-Adapter: ","listPlayingPlayButton押された。playButton: " + v.getTag());
                 // TODO: リスト内のボタン動作。再生上位へ移動する。
             }
         });

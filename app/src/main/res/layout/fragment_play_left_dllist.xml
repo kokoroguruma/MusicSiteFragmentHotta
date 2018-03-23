@@ -5,4 +5,41 @@
     tools:context="com.kokoroguruma.musicsitefragmenthotta.PlayLeftDLListFragment">
 
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/playLeftSearchText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_toLeftOf="@+id/playLeftSearchButton"
+                android:hint="@string/playLeftSearchTextHint"
+                android:inputType="none"
+                android:singleLine="true" />
+
+            <Button
+                android:id="@+id/playLeftSearchButton"
+                style="@style/Widget.AppCompat.Button.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="@string/playLeftSearchButtonText" />
+        </RelativeLayout>
+
+        <ListView
+            android:id="@+id/playLeftList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+        </ListView>
+
+    </LinearLayout>
+
 </FrameLayout>

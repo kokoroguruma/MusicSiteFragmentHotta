@@ -16,7 +16,6 @@ import android.view.ViewGroup;
 
 import com.kokoroguruma.musicsitefragmenthotta.listPlayCenterList.ListPlayCenterListAdapter;
 
-// TODO: ViewPagerの実装
 
 /**
  * ログイン後のデフォルト表示画面
@@ -53,7 +52,6 @@ public class PlayFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 
-
         super.onViewCreated(view, savedInstanceState);
     }
 
@@ -68,7 +66,7 @@ public class PlayFragment extends Fragment {
     // ここからViewPager
     private void setFragmentsInViewPager() {
         Log.d("PlayFragment: ","setFragmentsInViewPager(): ");
-        ViewPager viewPager = getActivity().findViewById(R.id.playViewPager);
+        ViewPager viewPager = getView().findViewById(R.id.playViewPager);
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         PlayFragmentPagerAdapter adapter = new PlayFragmentPagerAdapter(fragmentManager);
         viewPager.setAdapter(adapter);
@@ -76,12 +74,6 @@ public class PlayFragment extends Fragment {
         Log.d("PlayFragment: ","setFragmentsInViewPager(): "+ viewPager.getAdapter());
     }
 
-    private void updateFragmentInViewPager() {
-        ViewPager viewPager = getActivity().findViewById(R.id.playViewPager);
-        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-        PlayFragmentPagerAdapter adapter = new PlayFragmentPagerAdapter(fragmentManager);
-        adapter.notifyDataSetChanged();
-    }
 
 
     // 更新対策にStateを利用。これを使うことで毎回新規作成する？

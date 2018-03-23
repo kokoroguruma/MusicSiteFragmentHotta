@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <RelativeLayout
@@ -13,41 +11,30 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_toLeftOf="@+id/listPlayingDeleteButton"
+            android:layout_toLeftOf="@+id/listDlAddButton"
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/listPlayingTitle"
+                android:id="@+id/listDlAddTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/listPlayingTitleText"
+                android:text="@string/listDlAddTitleText"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
             <TextView
-                android:id="@+id/listPlayingComment"
+                android:id="@+id/listDlAddComment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/listPlayingCommentText"
+                android:text="@string/listDlAddCommentText"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small" />
-
         </LinearLayout>
 
         <Button
-            android:id="@+id/listPlayingDeleteButton"
-            style="@style/Widget.AppCompat.Button.Small"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toLeftOf="@+id/listPlayingPlayButton"
-            android:text="@string/listPlayingDeleteButtonText" />
-
-        <Button
-            android:id="@+id/listPlayingPlayButton"
+            android:id="@+id/listDlAddButton"
             style="@style/Widget.AppCompat.Button.Small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:text="@string/playingPlayButtonText" />
-
+            android:text="@string/listDlAddButtonText" />
     </RelativeLayout>
-
 </android.support.constraint.ConstraintLayout>

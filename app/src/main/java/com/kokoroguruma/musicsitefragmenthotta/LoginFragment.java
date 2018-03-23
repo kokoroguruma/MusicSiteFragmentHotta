@@ -52,7 +52,7 @@ public class LoginFragment extends Fragment {
 
 
     private void onClickLoginSubmitButton() {
-        Button button = getActivity().findViewById(R.id.loginSubmitButton);
+        Button button = getView().findViewById(R.id.loginSubmitButton);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,7 +63,7 @@ public class LoginFragment extends Fragment {
 
 
     private void onClickLoginIntentRegistButton() {
-        Button button = getActivity().findViewById(R.id.loginIntentRegistButton);
+        Button button = getView().findViewById(R.id.loginIntentRegistButton);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

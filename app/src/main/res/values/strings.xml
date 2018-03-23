@@ -29,6 +29,14 @@
 
     <string name="listPlayingTitleText">タイトル</string>
     <string name="listPlayingCommentText">コメント</string>
+    <string name="listPlayingDeleteButtonText">×</string>
+
+    <string name="playLeftSearchTextHint">検索文字列</string>
+    <string name="playLeftSearchButtonText">検索</string>
+
+    <string name="listDlAddTitleText">タイトル</string>
+    <string name="listDlAddCommentText">コメント</string>
+    <string name="listDlAddButtonText">＞＞</string>
 
     <string name="menuAddMusicText">音声追加</string>
     <string name="menuLogoutText">ログアウト</string>
