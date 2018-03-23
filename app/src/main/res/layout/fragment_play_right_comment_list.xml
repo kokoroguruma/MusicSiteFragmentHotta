@@ -5,4 +5,47 @@
     tools:context="com.kokoroguruma.musicsitefragmenthotta.PlayRightCommentListFragment">
 
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/playRightCommentTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:text="@string/playRightCommentTitleText" />
+
+        <ListView
+            android:id="@+id/playRightList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/playRightCommentTitle"
+            android:layout_above="@+id/playRightCommentAddLayout" />
+
+        <RelativeLayout
+            android:id="@+id/playRightCommentAddLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true">
+
+            <EditText
+                android:id="@+id/playRightCommentAddText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_toLeftOf="@+id/playRightCommentAddButton"
+                android:hint="@string/playRightCommentAddTextHint"
+                android:inputType="none" />
+
+            <Button
+                android:id="@+id/playRightCommentAddButton"
+                style="@style/Widget.AppCompat.Button.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="@string/playRightCommentAddButtonText" />
+        </RelativeLayout>
+
+    </RelativeLayout>
 </FrameLayout>

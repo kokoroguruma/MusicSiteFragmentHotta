@@ -38,6 +38,12 @@
     <string name="listDlAddCommentText">コメント</string>
     <string name="listDlAddButtonText">＞＞</string>
 
+    <string name="playRightCommentTitleText">タイトル</string>
+    <string name="playRightCommentAddTextHint">コメント</string>
+    <string name="playRightCommentAddButtonText">送信</string>
+
+
+
     <string name="menuAddMusicText">音声追加</string>
     <string name="menuLogoutText">ログアウト</string>
 
