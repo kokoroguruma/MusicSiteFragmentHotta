@@ -1,6 +1,7 @@
 package com.kokoroguruma.musicsitefragmenthotta;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -22,7 +23,6 @@ public class PlayPlayingViewFragment extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -30,11 +30,21 @@ public class PlayPlayingViewFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_play_playing_view, container, false);
     }
 
+    @Override
+    public void onResume() {
 
+        this.onClickList();
+
+        super.onResume();
+    }
 
     // ここからClick処理
     private void onClickList() {
-
+        this.onClickPlayingBackButton();
+        this.onClickPlayingPlayButton();
+        this.onClickPlayingStopButton();
+        this.onClickPlayingPauseButton();
+        this.onClickPlayingNextButton();
     }
 
     private void onClickPlayingBackButton() {
@@ -55,6 +65,10 @@ public class PlayPlayingViewFragment extends Fragment {
             public void onClick(View v) {
                 Log.d("PlayPlaingView-ment: ","onClickPlay(): ");
                 // TODO: Playボタン処理
+
+                Intent intent = new Intent(getActivity(), MusicPlayService.class);
+                getActivity().startService(intent);
+
             }
         });
     }
@@ -66,6 +80,11 @@ public class PlayPlayingViewFragment extends Fragment {
             public void onClick(View v) {
                 Log.d("PlayPlaingView-ment: ","onClickStop(): ");
                 // TODO: Stopボタン処理
+
+
+                Intent intent = new Intent(getActivity(), MusicPlayService.class);
+                getActivity().stopService(intent);
+
             }
         });
     }

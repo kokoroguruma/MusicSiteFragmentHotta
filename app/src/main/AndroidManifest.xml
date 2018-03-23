@@ -24,7 +24,8 @@
             android:exported="true" />
 
         <activity android:name=".RegistActivity" />
-        <activity android:name=".AddMusicActivity"></activity>
-    </application>
+        <activity android:name=".AddMusicActivity" />
 
+    </application>
+    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>
