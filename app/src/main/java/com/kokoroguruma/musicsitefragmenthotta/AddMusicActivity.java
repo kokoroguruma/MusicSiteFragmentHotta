@@ -40,8 +40,8 @@ public class AddMusicActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.menuLogout:
                 // ログアウト
+                application.logout();
                 finish();
-                application.logout(); // TODO: 一時「menu実装機能」停止 必要対策：IllegalStateException
                 break;
             case android.R.id.home:
                 // 何もしないで戻る。
@@ -54,13 +54,13 @@ public class AddMusicActivity extends AppCompatActivity {
 
 
     // ここからmenu管理
-/*    @Override
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.menu_add_music, menu);
         return super.onCreateOptionsMenu(menu);
     }
-*/
+
 
 
     // ここからClick用

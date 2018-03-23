@@ -31,16 +31,16 @@ public class MainActivity extends AppCompatActivity {
 
         fragmentManager = getSupportFragmentManager();
 
-        this.startMainFragment();
-
 
     }
 
-    // 開始時画面
-    private void startMainFragment() {
-        // TODO: ログイン状態をチェックして場合によってLoginFragment、PlayFragmentへ移動
-        this.setMainFragment(new LoginFragment());
+
+    @Override
+    protected void onResume() {
+        this.mainFragment();
+        super.onResume();
     }
+
 
 
 
@@ -66,6 +66,17 @@ public class MainActivity extends AppCompatActivity {
 
 
     // ここからFragmentの管理
+
+    // 開始時画面
+    private void mainFragment() {
+        // TODO: ログイン状態をチェックして場合によってLoginFragment、PlayFragmentへ移動
+        if (application.getLoginFlag()) {
+            this.setMainFragment(new PlayFragment());
+        } else {
+            this.setMainFragment(new LoginFragment());
+        }
+    }
+
 
     /**
      * mainFragmentの切り替え用
