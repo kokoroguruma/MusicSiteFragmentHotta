@@ -2,6 +2,8 @@ package com.kokoroguruma.musicsitefragmenthotta;
 
 
 import android.content.Intent;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -9,6 +11,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
+import com.kokoroguruma.musicsitefragmenthotta.playMusic.MusicPlayService;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 
 /**
@@ -18,6 +26,7 @@ import android.widget.Button;
  */
 public class PlayPlayingViewFragment extends Fragment {
 
+	MyApplication application;
 
 	public PlayPlayingViewFragment() {
 		// Required empty public constructor
@@ -26,6 +35,9 @@ public class PlayPlayingViewFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 							 Bundle savedInstanceState) {
+
+		application = (MyApplication) getActivity().getApplication();
+
 		// Inflate the layout for this fragment
 		return inflater.inflate(R.layout.fragment_play_playing_view, container, false);
 	}
@@ -37,6 +49,10 @@ public class PlayPlayingViewFragment extends Fragment {
 
 		super.onResume();
 	}
+
+
+
+
 
 	// ここからClick処理
 	private void onClickList() {
@@ -57,7 +73,7 @@ public class PlayPlayingViewFragment extends Fragment {
 			}
 		});
 	}
-
+	MediaPlayer mediaPlayer;
 	private void onClickPlayingPlayButton() {
 		Button button = getView().findViewById(R.id.playingPlayButton);
 		button.setOnClickListener(new View.OnClickListener() {
@@ -66,8 +82,12 @@ public class PlayPlayingViewFragment extends Fragment {
 				Log.d("PlayPlaingView-ment: ", "onClickPlay(): ");
 				// TODO: Playボタン処理
 
-				Intent intent = new Intent(getActivity(), MusicPlayService.class);
-				getActivity().startService(intent);
+
+//				application.startMusicPlyaService(application.getMainActivity());
+				application.startMusicPlyaService(application.getBaseContext());
+
+//				Intent intent = new Intent(getActivity(), MusicPlayService.class);
+//				getActivity().startService(intent);
 
 			}
 		});
@@ -80,6 +100,7 @@ public class PlayPlayingViewFragment extends Fragment {
 			public void onClick(View v) {
 				Log.d("PlayPlaingView-ment: ", "onClickStop(): ");
 				// TODO: Stopボタン処理
+
 
 
 				Intent intent = new Intent(getActivity(), MusicPlayService.class);

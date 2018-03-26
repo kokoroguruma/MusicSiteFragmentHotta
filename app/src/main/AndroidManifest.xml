@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.kokoroguruma.musicsitefragmenthotta">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -19,7 +21,7 @@
         </activity>
 
         <service
-            android:name=".MusicPlayService"
+            android:name=".playMusic.MusicPlayService"
             android:enabled="true"
             android:exported="true" />
 
@@ -27,5 +29,4 @@
         <activity android:name=".AddMusicActivity" />
 
     </application>
-    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>

@@ -1,6 +1,14 @@
 package com.kokoroguruma.musicsitefragmenthotta;
 
 import android.app.Application;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
+import android.os.IBinder;
+import android.util.Log;
+
+import com.kokoroguruma.musicsitefragmenthotta.playMusic.MusicPlayService;
 
 /**
  * 各種データ管理。
@@ -15,6 +23,15 @@ public class MyApplication extends Application {
 
 	private String userId;
 	private String sPass;
+
+	private Intent musicPlayServiceIntent;
+
+	@Override
+	public void onCreate() {
+
+
+		super.onCreate();
+	}
 
 
 	// Getter, Setter
@@ -36,6 +53,54 @@ public class MyApplication extends Application {
 	}
 
 	// /Getter, Setter
+
+	public void startMusicPlyaService(Context ins_Context) {
+		Log.d("MyApplication: ", "startMusicPlayService()1: " + musicPlayServiceIntent);
+		musicPlayServiceIntent = new Intent(ins_Context, MusicPlayService.class);
+		Log.d("MyApplication: ", "startMusicPlayService()2: " + musicPlayServiceIntent);
+		startService(musicPlayServiceIntent);
+		this.bindPlay();
+	}
+
+	public void bindMusicPlayService(ServiceConnection ins_serviceConnection) {
+		Log.d("MyApplication: ", "bindMusicPlayService():");
+
+		bindService(musicPlayServiceIntent, ins_serviceConnection, Context.BIND_AUTO_CREATE);
+		unbindService(ins_serviceConnection);
+
+
+	}
+
+
+
+	// TODO: これは削除予定bind(ServiceConnection s)に変えて　各動作は呼び出し元で
+	public void bindPlay() {
+		Log.d("MyApplication: ", "bind():");
+		ServiceConnection serviceConnection = new ServiceConnection() {
+			@Override
+			public void onServiceConnected(ComponentName name, IBinder service) {
+				Log.d("MyApplication: ", "bind(): on-Connected: ");
+				Log.d("MyApplication: ", "bind(): on-Connected: ComponentName: " + name);
+				Log.d("MyApplication: ", "bind(): on-Connected: IBinder: " + service);
+				Log.d("MyApplication: ", "bind(): on-Connected: GetClass: " + service.getClass());
+
+				MusicPlayService musicPlayService = ((MusicPlayService.MusicPlayServiceBinder) service).getService();
+				musicPlayService.musicStart();
+			}
+
+			@Override
+			public void onServiceDisconnected(ComponentName name) {
+				Log.d("MyApplication: ", "bind(): on-Disonnected: ");
+				Log.d("MyApplication: ", "bind(): on-Disonnected: ComponentName: " + name);
+
+			}
+		};
+
+
+
+		bindService(musicPlayServiceIntent, serviceConnection, Context.BIND_AUTO_CREATE);
+//		unbindService(serviceConnection);
+	}
 
 
 	/**
