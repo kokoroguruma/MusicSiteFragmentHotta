@@ -27,86 +27,85 @@ import java.util.ArrayList;
 public class PlayLeftDLListFragment extends Fragment {
 
 
-    public PlayLeftDLListFragment() {
-        // Required empty public constructor
-    }
+	public PlayLeftDLListFragment() {
+		// Required empty public constructor
+	}
 
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_play_left_dllist, container, false);
-    }
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+							 Bundle savedInstanceState) {
+		// Inflate the layout for this fragment
+		return inflater.inflate(R.layout.fragment_play_left_dllist, container, false);
+	}
 
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-    }
+	@Override
+	public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+		super.onViewCreated(view, savedInstanceState);
+	}
 
-    @Override
-    public void onResume() {
+	@Override
+	public void onResume() {
 
-        this.setComponent();
+		this.setComponent();
 
-        super.onResume();
-    }
+		super.onResume();
+	}
 
-    // ここから各コンポーネントの実装
+	// ここから各コンポーネントの実装
 
-    private void setComponent() {
-        this.onClickPlayLeftSearchButton();
-        this.setList();
-    }
+	private void setComponent() {
+		this.onClickPlayLeftSearchButton();
+		this.setList();
+	}
 
-    private void onClickPlayLeftSearchButton() {
-        Log.d("PlayLeft-Fragment: ","onClickPlay-SearchButton: v(): " + getView());
-        Button button = getView().findViewById(R.id.playLeftSearchButton);
-        Log.d("PlayLeft-Fragment: ","onClickPlay-SearchButton: button: " + getView().findViewById(R.id.playLeftSearchButton));
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                updateList();
-            }
-        });
-    }
+	private void onClickPlayLeftSearchButton() {
+		Log.d("PlayLeft-Fragment: ", "onClickPlay-SearchButton: v(): " + getView());
+		Button button = getView().findViewById(R.id.playLeftSearchButton);
+		Log.d("PlayLeft-Fragment: ", "onClickPlay-SearchButton: button: " + getView().findViewById(R.id.playLeftSearchButton));
+		button.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				updateList();
+			}
+		});
+	}
 
-    private void setList() {
-        ListView listView = getView().findViewById(R.id.playLeftList);
-
-
-        // TODO: Listデータの引き出し。
-        ArrayList<ListDlAddListItem> arrayList = new ArrayList<ListDlAddListItem>();
-        for (int i=0; i<20; i++) {
-            ListDlAddListItem listItem = new ListDlAddListItem(i, "name" + i, "url" + i, "comment" + i);
-            arrayList.add(listItem);
-        }
-
-        ListDlAddListAdapter adapter = new ListDlAddListAdapter(this.getContext(), R.id.playLeftList, arrayList);
-        listView.setAdapter(adapter);
-    }
+	private void setList() {
+		ListView listView = getView().findViewById(R.id.playLeftList);
 
 
-    private void updateList() {
-        // TODO: 検索機能。Listをアップデート
+		// TODO: Listデータの引き出し。
+		ArrayList<ListDlAddListItem> arrayList = new ArrayList<ListDlAddListItem>();
+		for (int i = 0; i < 20; i++) {
+			ListDlAddListItem listItem = new ListDlAddListItem(i, "name" + i, "url" + i, "comment" + i);
+			arrayList.add(listItem);
+		}
 
-        Log.d("PlayLeft-Fragment: ","updateList()");
-        ListView listView = getView().findViewById(R.id.playLeftList);
-
-        ListDlAddListAdapter adapter = (ListDlAddListAdapter) listView.getAdapter();
-        Log.d("PlayLeft-Fragment: ","updateList(): adapter: " + adapter);
-
-        ArrayList<ListDlAddListItem> arrayList = new ArrayList<ListDlAddListItem>();
-        for (int i=0; i<30; i++) {
-            ListDlAddListItem listItem = new ListDlAddListItem(i, "name2:" + i, "url" + i, "comment" + i);
-            arrayList.add(listItem);
-        }
+		ListDlAddListAdapter adapter = new ListDlAddListAdapter(this.getContext(), R.id.playLeftList, arrayList);
+		listView.setAdapter(adapter);
+	}
 
 
-        adapter.updateList(arrayList);
-        adapter.notifyDataSetChanged();
-    }
+	private void updateList() {
+		// TODO: 検索機能。Listをアップデート
 
+		Log.d("PlayLeft-Fragment: ", "updateList()");
+		ListView listView = getView().findViewById(R.id.playLeftList);
+
+		ListDlAddListAdapter adapter = (ListDlAddListAdapter) listView.getAdapter();
+		Log.d("PlayLeft-Fragment: ", "updateList(): adapter: " + adapter);
+
+		ArrayList<ListDlAddListItem> arrayList = new ArrayList<ListDlAddListItem>();
+		for (int i = 0; i < 30; i++) {
+			ListDlAddListItem listItem = new ListDlAddListItem(i, "name2:" + i, "url" + i, "comment" + i);
+			arrayList.add(listItem);
+		}
+
+
+		adapter.updateList(arrayList);
+		adapter.notifyDataSetChanged();
+	}
 
 
 }

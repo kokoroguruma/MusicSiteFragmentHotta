@@ -14,99 +14,91 @@ import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
 
-    MyApplication application;
+	MyApplication application;
 
-    FragmentManager fragmentManager;
+	FragmentManager fragmentManager;
 
-    Boolean menuVisibllityFlag = false;
+	Boolean menuVisibllityFlag = false;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
 
-        application = (MyApplication) this.getApplication();
-        application.setMainActivity(this);
-
-
-        fragmentManager = getSupportFragmentManager();
+		application = (MyApplication) this.getApplication();
+		application.setMainActivity(this);
 
 
-    }
+		fragmentManager = getSupportFragmentManager();
 
 
-    @Override
-    protected void onResume() {
-        this.mainFragment();
-        super.onResume();
-    }
+	}
 
 
+	@Override
+	protected void onResume() {
+		this.mainFragment();
+		super.onResume();
+	}
 
 
+	// ここからmenu管理
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		if (menuVisibllityFlag) {
+			MenuInflater menuInflater = getMenuInflater();
+			menuInflater.inflate(R.menu.menu, menu);
+		}
+		return super.onCreateOptionsMenu(menu);
+	}
 
-    // ここからmenu管理
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        if (menuVisibllityFlag) {
-            MenuInflater menuInflater = getMenuInflater();
-            menuInflater.inflate(R.menu.menu, menu);
-        }
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    public void setMenuVisibllityFlag(Boolean ins_menuVisibllityFlag) {
-        this.menuVisibllityFlag = ins_menuVisibllityFlag;
-    }
-
+	public void setMenuVisibllityFlag(Boolean ins_menuVisibllityFlag) {
+		this.menuVisibllityFlag = ins_menuVisibllityFlag;
+	}
 
 
+	// ここからFragmentの管理
+
+	// 開始時画面
+	private void mainFragment() {
+		if (application.getLoginFlag()) {
+			this.setMainFragment(new PlayFragment());
+		} else {
+			this.setMainFragment(new LoginFragment());
+		}
+	}
 
 
+	/**
+	 * mainFragmentの切り替え用
+	 *
+	 * @param fragment セットされるフラグメント
+	 */
+	public void setMainFragment(Fragment fragment) {
+		FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+		fragmentTransaction.replace(R.id.mainFragment, fragment);
+		fragmentTransaction.commit();
+	}
 
 
-    // ここからFragmentの管理
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+			case R.id.menuAddMusic:
+				// 音声追加画面へ
+				Intent intent = new Intent(getApplicationContext(), AddMusicActivity.class);
+				startActivity(intent);
+				break;
+			case R.id.menuLogout:
+				// ログアウト
+				application.logout();
+				break;
+			case android.R.id.home:
+				// 戻る。
+				this.setMainFragment(new LoginFragment());
+				break;
+		}
 
-    // 開始時画面
-    private void mainFragment() {
-        if (application.getLoginFlag()) {
-            this.setMainFragment(new PlayFragment());
-        } else {
-            this.setMainFragment(new LoginFragment());
-        }
-    }
-
-
-    /**
-     * mainFragmentの切り替え用
-     * @param fragment セットされるフラグメント
-     */
-    public void setMainFragment(Fragment fragment) {
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.mainFragment, fragment);
-        fragmentTransaction.commit();
-    }
-
-
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menuAddMusic:
-                // 音声追加画面へ
-                Intent intent = new Intent(getApplicationContext(), AddMusicActivity.class);
-                startActivity(intent);
-                break;
-            case R.id.menuLogout:
-                // ログアウト
-                application.logout();
-                break;
-            case android.R.id.home:
-                // 戻る。
-                this.setMainFragment(new LoginFragment());
-                break;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
+		return super.onOptionsItemSelected(item);
+	}
 }

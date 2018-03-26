@@ -15,67 +15,64 @@ import android.widget.Button;
  */
 public class AddMusicActivity extends AppCompatActivity {
 
-    MyApplication application;
+	MyApplication application;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_music);
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_add_music);
 
-        application = (MyApplication) this.getApplication();
+		application = (MyApplication) this.getApplication();
 
-        this.onClickAddMusicSubmitButton();
-
-
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
+		this.onClickAddMusicSubmitButton();
 
 
-
-    }
-
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menuLogout:
-                // ログアウト
-                application.logout();
-                finish();
-                break;
-            case android.R.id.home:
-                // 何もしないで戻る。
-                finish();
-                break;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
+		ActionBar actionBar = getSupportActionBar();
+		actionBar.setDisplayHomeAsUpEnabled(true);
 
 
-    // ここからmenu管理
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.menu_add_music, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
+	}
 
 
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+			case R.id.menuLogout:
+				// ログアウト
+				application.logout();
+				finish();
+				break;
+			case android.R.id.home:
+				// 何もしないで戻る。
+				finish();
+				break;
+		}
 
-    // ここからClick用
+		return super.onOptionsItemSelected(item);
+	}
 
 
-    private void onClickAddMusicSubmitButton() {
-        Button button = findViewById(R.id.addMusicSubmitButton);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // TODO: Music新規登録作業
-            }
-        });
-    }
+	// ここからmenu管理
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater menuInflater = getMenuInflater();
+		menuInflater.inflate(R.menu.menu_add_music, menu);
+		return super.onCreateOptionsMenu(menu);
+	}
 
+
+	// ここからClick用
+
+
+	private void onClickAddMusicSubmitButton() {
+		Button button = findViewById(R.id.addMusicSubmitButton);
+		button.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO: Music新規登録作業
+			}
+		});
+	}
 
 
 }

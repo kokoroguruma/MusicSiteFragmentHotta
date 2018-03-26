@@ -9,41 +9,41 @@ import android.widget.Button;
 public class ListDlAddListItem {
 
 
-    private int musicId;
+	private int musicId;
 
-    private String musicName;
+	private String musicName;
 
-    private String musicUrl;
+	private String musicUrl;
 
-    private String musicComment;
+	private String musicComment;
 
-    private Button listDlAddButton;
+	private Button listDlAddButton;
 
 
-    public ListDlAddListItem(int ins_musicId, String ins_musicName, String ins_musicUrl) {
-        this(ins_musicId, ins_musicName, ins_musicUrl, "");
-    }
+	public ListDlAddListItem(int ins_musicId, String ins_musicName, String ins_musicUrl) {
+		this(ins_musicId, ins_musicName, ins_musicUrl, "");
+	}
 
-    public ListDlAddListItem(int ins_musicId, String ins_musicName, String ins_musicUrl, String ins_musicComment) {
-        this.musicId = ins_musicId;
-        this.musicName = ins_musicName;
-        this.musicUrl = ins_musicUrl;
-        this.musicComment = ins_musicComment;
-    }
+	public ListDlAddListItem(int ins_musicId, String ins_musicName, String ins_musicUrl, String ins_musicComment) {
+		this.musicId = ins_musicId;
+		this.musicName = ins_musicName;
+		this.musicUrl = ins_musicUrl;
+		this.musicComment = ins_musicComment;
+	}
 
-    public int getMusicId() {
-        return musicId;
-    }
+	public int getMusicId() {
+		return musicId;
+	}
 
-    public String getMusicName() {
-        return musicName;
-    }
+	public String getMusicName() {
+		return musicName;
+	}
 
-    public String getMusicUrl() {
-        return musicUrl;
-    }
+	public String getMusicUrl() {
+		return musicUrl;
+	}
 
-    public String getMusicComment() {
-        return musicComment;
-    }
+	public String getMusicComment() {
+		return musicComment;
+	}
 }

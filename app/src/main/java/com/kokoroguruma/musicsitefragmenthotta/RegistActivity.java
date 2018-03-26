@@ -13,54 +13,47 @@ import android.widget.Button;
  */
 public class RegistActivity extends AppCompatActivity {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_regist);
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_regist);
 
 
+		this.onClickRegistSubmitButton();
 
 
-        this.onClickRegistSubmitButton();
+		ActionBar actionBar = getSupportActionBar();
+		actionBar.setDisplayHomeAsUpEnabled(true);
+
+	}
 
 
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+			case android.R.id.home:
+				// 何もしないで戻る。
+				finish();
+				break;
+		}
 
-    }
-
-
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                // 何もしないで戻る。
-                finish();
-                break;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
+		return super.onOptionsItemSelected(item);
+	}
 
 
+	// ここからClick用
+
+	private void onClickRegistSubmitButton() {
+		Button button = findViewById(R.id.registSubmitButton);
+		button.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO: 新規登録処理
+			}
+		});
 
 
-    // ここからClick用
-
-    private void onClickRegistSubmitButton() {
-        Button button = findViewById(R.id.registSubmitButton);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // TODO: 新規登録処理
-            }
-        });
-
-
-    }
-
-
+	}
 
 
 }

@@ -20,77 +20,70 @@ import java.util.ArrayList;
 
 public class ListPlayCenterListAdapter extends BaseAdapter {
 
-    Context context;
-    int resource;
-    LayoutInflater layoutInflater;
-    ArrayList<ListPlayCenterListItem> listPlayCenterListItemList;
+	Context context;
+	int resource;
+	LayoutInflater layoutInflater;
+	ArrayList<ListPlayCenterListItem> listPlayCenterListItemList;
 
-    public ListPlayCenterListAdapter(Context context, int resource, ArrayList<ListPlayCenterListItem> listPlayCenterListItemList) {
-        this.context = context;
-        this.resource = resource;
-        this.layoutInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        this.listPlayCenterListItemList = listPlayCenterListItemList;
-    }
-
-
+	public ListPlayCenterListAdapter(Context context, int resource, ArrayList<ListPlayCenterListItem> listPlayCenterListItemList) {
+		this.context = context;
+		this.resource = resource;
+		this.layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		this.listPlayCenterListItemList = listPlayCenterListItemList;
+	}
 
 
+	@Override
+	public int getCount() {
+		return this.listPlayCenterListItemList.size();
+	}
+
+	@Override
+	public Object getItem(int position) {
+		return this.listPlayCenterListItemList.get(position);
+	}
+
+	@Override
+	public long getItemId(int position) {
+		return position;
+	}
+
+	@Override
+	public View getView(int position, View convertView, ViewGroup parent) {
+		if (convertView == null) {
+			convertView = layoutInflater.inflate(R.layout.list_playing_list, parent, false);
+		}
+
+		TextView listPlayingTitleView = convertView.findViewById(R.id.listPlayingTitle);
+		listPlayingTitleView.setText(this.listPlayCenterListItemList.get(position).getMusicName());
+
+		TextView listPlayingCommentView = convertView.findViewById(R.id.listPlayingComment);
+		listPlayingCommentView.setText(this.listPlayCenterListItemList.get(position).getMusicComment());
 
 
-    @Override
-    public int getCount() {
-        return this.listPlayCenterListItemList.size();
-    }
+		Button deleteButton = convertView.findViewById(R.id.listPlayingDeleteButton);
+		deleteButton.setTag(position);
+		deleteButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Log.d("ListPlayCen-Adapter: ", "listPlayingDeleteButton押された。deleteButton: " + v.getClass());
+				Log.d("ListPlayCen-Adapter: ", "listPlayingDeleteButton押された。deleteButton: " + v.getTag());
+				// TODO: リスト内のボタン動作。削除する。
+			}
+		});
 
-    @Override
-    public Object getItem(int position) {
-        return this.listPlayCenterListItemList.get(position);
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return position;
-    }
-
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        if (convertView == null) {
-            convertView = layoutInflater.inflate(R.layout.list_playing_list, parent, false);
-        }
-
-        TextView listPlayingTitleView = convertView.findViewById(R.id.listPlayingTitle);
-        listPlayingTitleView.setText(this.listPlayCenterListItemList.get(position).getMusicName());
-
-        TextView listPlayingCommentView = convertView.findViewById(R.id.listPlayingComment);
-        listPlayingCommentView.setText(this.listPlayCenterListItemList.get(position).getMusicComment());
+		Button playButton = convertView.findViewById(R.id.listPlayingPlayButton);
+		playButton.setTag(position);
+		playButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Log.d("ListPlayCen-Adapter: ", "listPlayingPlayButton押された。playButton: " + v.getClass());
+				Log.d("ListPlayCen-Adapter: ", "listPlayingPlayButton押された。playButton: " + v.getTag());
+				// TODO: リスト内のボタン動作。再生上位へ移動する。
+			}
+		});
 
 
-        Button deleteButton = convertView.findViewById(R.id.listPlayingDeleteButton);
-        deleteButton.setTag(position);
-        deleteButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d("ListPlayCen-Adapter: ","listPlayingDeleteButton押された。deleteButton: " + v.getClass());
-                Log.d("ListPlayCen-Adapter: ","listPlayingDeleteButton押された。deleteButton: " + v.getTag());
-                // TODO: リスト内のボタン動作。削除する。
-            }
-        });
-
-        Button playButton = convertView.findViewById(R.id.listPlayingPlayButton);
-        playButton.setTag(position);
-        playButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d("ListPlayCen-Adapter: ","listPlayingPlayButton押された。playButton: " + v.getClass());
-                Log.d("ListPlayCen-Adapter: ","listPlayingPlayButton押された。playButton: " + v.getTag());
-                // TODO: リスト内のボタン動作。再生上位へ移動する。
-            }
-        });
-
-
-
-
-
-        return convertView;
-    }
+		return convertView;
+	}
 }

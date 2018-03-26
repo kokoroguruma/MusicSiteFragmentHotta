@@ -24,50 +24,48 @@ import java.util.ArrayList;
 public class PlayCenterPlayingListFragment extends Fragment {
 
 
-    public PlayCenterPlayingListFragment() {
-        // Required empty public constructor
-    }
+	public PlayCenterPlayingListFragment() {
+		// Required empty public constructor
+	}
 
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+							 Bundle savedInstanceState) {
 
-        Log.d("PlayCenter: ", "onCreateView: ");
-
-
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_play_center_playing_list, container, false);
-    }
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+		Log.d("PlayCenter: ", "onCreateView: ");
 
 
-        this.setList();
+		// Inflate the layout for this fragment
+		return inflater.inflate(R.layout.fragment_play_center_playing_list, container, false);
+	}
+
+	@Override
+	public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 
 
-        super.onViewCreated(view, savedInstanceState);
-    }
-
-    private void setList() {
-        ListView listView = getView().findViewById(R.id.playCenterList);
-
-        ArrayList<ListPlayCenterListItem> arrayList = new ArrayList<ListPlayCenterListItem>();
-
-        // TODO: Listのデータ引き出し、構築
-        for (int i=0; i<10; i++) {
-            ListPlayCenterListItem listItem = new ListPlayCenterListItem(i, "aaa" + i, "url" + i, "com" + i);
-            arrayList.add(listItem);
-        }
-
-        ListPlayCenterListAdapter adapter = new ListPlayCenterListAdapter(this.getContext(), R.id.playCenterList, arrayList);
-        listView.setAdapter(adapter);
+		this.setList();
 
 
+		super.onViewCreated(view, savedInstanceState);
+	}
 
-    }
+	private void setList() {
+		ListView listView = getView().findViewById(R.id.playCenterList);
 
+		ArrayList<ListPlayCenterListItem> arrayList = new ArrayList<ListPlayCenterListItem>();
+
+		// TODO: Listのデータ引き出し、構築
+		for (int i = 0; i < 10; i++) {
+			ListPlayCenterListItem listItem = new ListPlayCenterListItem(i, "aaa" + i, "url" + i, "com" + i);
+			arrayList.add(listItem);
+		}
+
+		ListPlayCenterListAdapter adapter = new ListPlayCenterListAdapter(this.getContext(), R.id.playCenterList, arrayList);
+		listView.setAdapter(adapter);
+
+
+	}
 
 
 }
