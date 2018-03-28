@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.kokoroguruma.musicsitefragmenthotta.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * カスタムListViewのAdapter
@@ -23,9 +24,9 @@ public class ListPlayCenterListAdapter extends BaseAdapter {
 	Context context;
 	int resource;
 	LayoutInflater layoutInflater;
-	ArrayList<ListPlayCenterListItem> listPlayCenterListItemList;
+	List<ListPlayCenterListItem> listPlayCenterListItemList;
 
-	public ListPlayCenterListAdapter(Context context, int resource, ArrayList<ListPlayCenterListItem> listPlayCenterListItemList) {
+	public ListPlayCenterListAdapter(Context context, int resource, List<ListPlayCenterListItem> listPlayCenterListItemList) {
 		this.context = context;
 		this.resource = resource;
 		this.layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);

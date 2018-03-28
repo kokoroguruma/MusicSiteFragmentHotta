@@ -1,11 +1,11 @@
 TODOリスト
 
+TODO: ViewPager周り。左でデータをApplicationに入れて、且つ、中央を更新。
 
 TODO: Center
 TODO: Left
 TODO: Right
 TODO: MusicPlay
-TODO: AddMusic
 
 MainActivity
    基本画面。

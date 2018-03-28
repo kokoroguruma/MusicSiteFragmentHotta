@@ -68,6 +68,11 @@ public class MainActivity extends AppCompatActivity {
 		}
 	}
 
+	// PlayCenterのListの更新。
+	public void updateCenterList() {
+
+	}
+
 
 	/**
 	 * mainFragmentの切り替え用

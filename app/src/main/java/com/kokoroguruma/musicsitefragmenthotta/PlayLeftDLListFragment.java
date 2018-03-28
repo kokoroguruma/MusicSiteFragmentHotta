@@ -13,9 +13,10 @@ import android.widget.ListView;
 
 import com.kokoroguruma.musicsitefragmenthotta.listDlAddList.ListDlAddListAdapter;
 import com.kokoroguruma.musicsitefragmenthotta.listDlAddList.ListDlAddListItem;
-import com.kokoroguruma.musicsitefragmenthotta.listPlayCenterList.ListPlayCenterListAdapter;
+import com.kokoroguruma.musicsitefragmenthotta.listPlayCenterList.ListPlayCenterListItem;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -26,6 +27,7 @@ import java.util.ArrayList;
  */
 public class PlayLeftDLListFragment extends Fragment {
 
+	MyApplication application;
 
 	public PlayLeftDLListFragment() {
 		// Required empty public constructor
@@ -35,6 +37,10 @@ public class PlayLeftDLListFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 							 Bundle savedInstanceState) {
+
+
+		application = (MyApplication) getActivity().getApplication();
+
 		// Inflate the layout for this fragment
 		return inflater.inflate(R.layout.fragment_play_left_dllist, container, false);
 	}
@@ -105,6 +111,22 @@ public class PlayLeftDLListFragment extends Fragment {
 
 		adapter.updateList(arrayList);
 		adapter.notifyDataSetChanged();
+	}
+
+
+	private void tachPlayCenterPlayingListFragment() {
+
+		List<ListPlayCenterListItem> list = application.getListPlayCenterListItemList();
+		list.clear();
+		for (int i=0; i<10; i++) {
+
+			ListPlayCenterListItem item = new ListPlayCenterListItem(i, "name" + i, "url" + i);
+			list.add(item);
+		}
+
+
+
+
 	}
 
 

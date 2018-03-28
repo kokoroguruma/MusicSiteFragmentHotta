@@ -14,6 +14,7 @@ import com.kokoroguruma.musicsitefragmenthotta.listPlayCenterList.ListPlayCenter
 import com.kokoroguruma.musicsitefragmenthotta.listPlayCenterList.ListPlayCenterListItem;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -23,6 +24,9 @@ import java.util.ArrayList;
  */
 public class PlayCenterPlayingListFragment extends Fragment {
 
+	MyApplication application;
+
+	ListPlayCenterListAdapter listPlayCenterListAdapter;
 
 	public PlayCenterPlayingListFragment() {
 		// Required empty public constructor
@@ -33,8 +37,9 @@ public class PlayCenterPlayingListFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 							 Bundle savedInstanceState) {
 
-		Log.d("PlayCenter: ", "onCreateView: ");
+		Log.d("PlayCenter: ", "onCreateView(): ");
 
+		application = (MyApplication) getActivity().getApplication();
 
 		// Inflate the layout for this fragment
 		return inflater.inflate(R.layout.fragment_play_center_playing_list, container, false);
@@ -50,20 +55,27 @@ public class PlayCenterPlayingListFragment extends Fragment {
 		super.onViewCreated(view, savedInstanceState);
 	}
 
+	@Override
+	public void onResume() {
+		Log.d("PlayCenter: ", "onResume(): ");
+
+
+
+		super.onResume();
+	}
+
 	private void setList() {
 		ListView listView = getView().findViewById(R.id.playCenterList);
 
-		ArrayList<ListPlayCenterListItem> arrayList = new ArrayList<ListPlayCenterListItem>();
+		List<ListPlayCenterListItem> listPlayCenterListItemList = application.getListPlayCenterListItemList();
 
-		// TODO: Listのデータ引き出し、構築
-		for (int i = 0; i < 10; i++) {
-			ListPlayCenterListItem listItem = new ListPlayCenterListItem(i, "aaa" + i, "url" + i, "com" + i);
-			arrayList.add(listItem);
-		}
 
-		ListPlayCenterListAdapter adapter = new ListPlayCenterListAdapter(this.getContext(), R.id.playCenterList, arrayList);
-		listView.setAdapter(adapter);
+		listPlayCenterListAdapter = new ListPlayCenterListAdapter(this.getContext(), R.id.playCenterList, listPlayCenterListItemList);
+		listView.setAdapter(listPlayCenterListAdapter);
+	}
 
+	public void updateList() {
+		listPlayCenterListAdapter.notifyDataSetChanged();
 
 	}
 

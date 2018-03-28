@@ -10,7 +10,11 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.kokoroguruma.musicsitefragmenthotta.access.Access;
+import com.kokoroguruma.musicsitefragmenthotta.listPlayCenterList.ListPlayCenterListItem;
 import com.kokoroguruma.musicsitefragmenthotta.playMusic.MusicPlayService;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 各種データ管理。
@@ -26,10 +30,15 @@ public class MyApplication extends Application {
 	private String userId;
 	private String sPass;
 
+	private List<ListPlayCenterListItem> listPlayCenterListItemList;
+
+
 	private Intent musicPlayServiceIntent;
 
 	@Override
 	public void onCreate() {
+
+		listPlayCenterListItemList = new ArrayList<ListPlayCenterListItem>();
 
 
 		super.onCreate();
@@ -62,7 +71,15 @@ public class MyApplication extends Application {
 		this.sPass = sPass;
 	}
 
-	// /Getter, Setter
+	public List<ListPlayCenterListItem> getListPlayCenterListItemList() {
+		return listPlayCenterListItemList;
+	}
+
+	public void setListPlayCenterListItemList(List<ListPlayCenterListItem> listPlayCenterListItemList) {
+		this.listPlayCenterListItemList = listPlayCenterListItemList;
+	}
+
+// /Getter, Setter
 
 	public void startMusicPlyaService(Context ins_Context) {
 		Log.d("MyApplication: ", "startMusicPlayService()1: " + musicPlayServiceIntent);
@@ -117,7 +134,6 @@ public class MyApplication extends Application {
 	 * ログアウト処理
 	 */
 	public void logout() {
-		// TODO: ログアウト処理
 
 		// オプションメニューの解除
 		this.mainActivity.menuVisibllityFlag = false;
