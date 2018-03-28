@@ -54,6 +54,14 @@ public class MyApplication extends Application {
 		this.loginFlag = loginFlag;
 	}
 
+	public String getSPass() {
+		return sPass;
+	}
+
+	public void setSPass(String sPass) {
+		this.sPass = sPass;
+	}
+
 	// /Getter, Setter
 
 	public void startMusicPlyaService(Context ins_Context) {

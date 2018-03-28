@@ -65,9 +65,9 @@ public class RegistActivity extends AppCompatActivity {
 				TextInputLayout registMailLayout = findViewById(R.id.registMailLayout);
 				String userMail = registMailLayout.getEditText().getText().toString();
 
-				String addUrl = "userRegist?user_id=" + userId + "&user_pass=" + userPass + "&user_mail=" + userMail;
+				String addAccessUrl = "userRegist?user_id=" + userId + "&user_pass=" + userPass + "&user_mail=" + userMail;
 
-				Access access = new Access(addUrl);
+				Access access = new Access(addAccessUrl);
 				String jsonData = access.startAcsess();
 
 				Map<String, Object> resultMap = access.currentJsonParser(jsonData);

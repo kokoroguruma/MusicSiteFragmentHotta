@@ -1,0 +1,44 @@
+クラス編成
+--------------------
+
+MainActivity
+   基本画面。
+ LoginFragment
+    ログイン画面。フラグ次第で即PlayFragmentへ移動
+ PlayFragment
+    ログイン後の画面。音声再生を行ったりいろいろする。
+  PlayPlayingViewFragment
+     上部に表示される再生ボタンなどのセット。
+  PlayCenterPlayingListFragment
+     デフォルトで表示される。個人の再生リスト。
+   ListPlayCenterListAdapter
+   ListPlayCenterListItem
+  PlayLeftDlListFragment
+     左側から出せるダウンロード一覧リスト。検索機能付き。
+   ListDlAddListAdapter
+   ListDlAddListItem
+  PlayRightCommentListFragment
+     右側から出せる現在再生中のコメントリスト。
+
+RegistActivity
+   新規登録画面
+
+AddMusicActivity
+   音声の新規登録を行える。
+
+MyApplication
+   Applicationファイル。すべての管理を行う。
+
+MusicPlayService
+   音声再生を管理するサービスファイル。閉じても大丈夫なようにサービスで行う。
+ PlayMusics
+    音声再生を再生、ストップを行ったりする。次曲などのリストも管理する。
+ MediaPlayerData
+    各再生用の音声ファイルを準備する。また、タイトルなどいろいろなデータも持つ。
+
+Acsess
+   DBにアクセスするクラス。使い回す。
+
+
+
+
