@@ -8,6 +8,7 @@ import android.content.ServiceConnection;
 import android.os.IBinder;
 import android.util.Log;
 
+import com.kokoroguruma.musicsitefragmenthotta.access.Access;
 import com.kokoroguruma.musicsitefragmenthotta.playMusic.MusicPlayService;
 
 /**
@@ -113,7 +114,18 @@ public class MyApplication extends Application {
 		this.mainActivity.menuVisibllityFlag = false;
 		this.mainActivity.invalidateOptionsMenu();
 
+
+		// サーバのログアウト処理
+		String addUrl = "logout?s_pass=" + this.sPass;
+		Access access = new Access(addUrl);
+		access.startAcsess();
+
+
+		this.userId = null;
+		this.sPass = null;
 		this.loginFlag = false;
+
+
 		// MainActivity以外からの操作用に try-catch
 		try {
 			this.mainActivity.setMainFragment(new LoginFragment());
@@ -126,8 +138,11 @@ public class MyApplication extends Application {
 	/**
 	 * ログイン処理
 	 */
-	public void login() {
-		// TODO: ログイン処理、判定等
+	public void login(String ins_userId, String ins_sPass) {
+
+		this.userId = ins_userId;
+		this.sPass = ins_sPass;
+
 		this.loginFlag = true;
 		this.mainActivity.setMainFragment(new PlayFragment());
 	}
