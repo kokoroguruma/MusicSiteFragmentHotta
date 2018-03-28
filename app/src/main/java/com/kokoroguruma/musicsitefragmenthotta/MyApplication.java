@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.IBinder;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.kokoroguruma.musicsitefragmenthotta.access.Access;
 import com.kokoroguruma.musicsitefragmenthotta.playMusic.MusicPlayService;
@@ -144,6 +145,8 @@ public class MyApplication extends Application {
 		this.sPass = ins_sPass;
 
 		this.loginFlag = true;
+
+
 		this.mainActivity.setMainFragment(new PlayFragment());
 	}
 

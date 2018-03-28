@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.kokoroguruma.musicsitefragmenthotta.access.Access;
 
@@ -94,6 +95,10 @@ public class LoginFragment extends Fragment {
 					// ログイン成功時
 					Log.d("LoginFragment: ", "onClickLoginSubmitButton(): onClick(): s_pass: " + resultMap.get("s_pass").toString());
 					application.login(userId, resultMap.get("s_pass").toString());
+				} else  {
+
+					Toast toast = Toast.makeText(getView().getContext(), "Login失敗", Toast.LENGTH_SHORT);
+					toast.show();
 				}
 
 			}
