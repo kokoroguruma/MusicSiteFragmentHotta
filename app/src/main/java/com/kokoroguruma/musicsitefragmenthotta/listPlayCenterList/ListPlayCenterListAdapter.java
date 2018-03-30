@@ -20,6 +20,7 @@ import java.util.List;
  */
 
 public class ListPlayCenterListAdapter extends BaseAdapter {
+	private final static String TAG = ListPlayCenterListAdapter.class.getSimpleName();
 
 	Context context;
 	int resource;
@@ -67,8 +68,8 @@ public class ListPlayCenterListAdapter extends BaseAdapter {
 		deleteButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Log.d("ListPlayCen-Adapter: ", "listPlayingDeleteButton押された。deleteButton: " + v.getClass());
-				Log.d("ListPlayCen-Adapter: ", "listPlayingDeleteButton押された。deleteButton: " + v.getTag());
+				Log.d(TAG, "listPlayingDeleteButton押された。deleteButton: " + v.getClass());
+				Log.d(TAG, "listPlayingDeleteButton押された。deleteButton: " + v.getTag());
 				// TODO: リスト内のボタン動作。削除する。
 			}
 		});
@@ -78,8 +79,8 @@ public class ListPlayCenterListAdapter extends BaseAdapter {
 		playButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Log.d("ListPlayCen-Adapter: ", "listPlayingPlayButton押された。playButton: " + v.getClass());
-				Log.d("ListPlayCen-Adapter: ", "listPlayingPlayButton押された。playButton: " + v.getTag());
+				Log.d(TAG, "listPlayingPlayButton押された。playButton: " + v.getClass());
+				Log.d(TAG, "listPlayingPlayButton押された。playButton: " + v.getTag());
 				// TODO: リスト内のボタン動作。再生上位へ移動する。
 			}
 		});

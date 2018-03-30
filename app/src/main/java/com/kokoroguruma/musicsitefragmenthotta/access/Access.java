@@ -29,6 +29,7 @@ import java.util.Map;
  */
 
 public class Access {
+	private final static String TAG = Access.class.getSimpleName();
 
 	String serverAddress;
 
@@ -70,17 +71,17 @@ public class Access {
 		}
 
 		if (!this.acsessFlag) {
-			Log.d("Access: ", "startAcsess(): 時間内に、データが取れなかった。アクセスできなかったよ！");
+			Log.d(TAG, "startAcsess(): 時間内に、データが取れなかった。アクセスできなかったよ！");
 		}
 
 
+		Log.d(TAG, "startAcsess(): result: " + result);
 
 		return result.toString();
 	}
 
-	public Map<String, Object> currentJsonParser(String jsonData) {
-		// TODO: 汎用パーサー。JSON用マップデータにして返す。
-
+	public Map<String, Object> jsonObjectParser(String jsonData) {
+		Log.d(TAG, "jsonObjectParser");
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 
 		try {
@@ -91,11 +92,9 @@ public class Access {
 				resultMap.put(key, root.get(key));
 			}
 
-
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
-
 
 		return resultMap;
 	}
@@ -110,13 +109,13 @@ public class Access {
 
 		public MyAsycTask(StringBuffer ins_resultString) {
 			this.resultString = ins_resultString;
-			Log.d("Access: ", "MyAsycTask(): ");
+			Log.d(TAG, "MyAsycTask(): ");
 		}
 
 
 		@Override
 		protected StringBuffer doInBackground(String... string) {
-			Log.d("Access: ", "MyAsycTask(): doInBackground(): address: " + string[0]);
+			Log.d(TAG, "MyAsycTask(): doInBackground(): address: " + string[0]);
 
 			StringBuffer result = new StringBuffer();
 			HttpURLConnection httpURLConnection = null;

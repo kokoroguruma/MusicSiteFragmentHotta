@@ -27,6 +27,7 @@ import com.kokoroguruma.musicsitefragmenthotta.listPlayCenterList.ListPlayCenter
  * A simple {@link Fragment} subclass.
  */
 public class PlayFragment extends Fragment {
+	private final static String TAG = PlayFragment.class.getSimpleName();
 
 	MyApplication application;
 
@@ -58,20 +59,20 @@ public class PlayFragment extends Fragment {
 
 	@Override
 	public void onResume() {
-		Log.d("PlayFragment: ", "onResume()");
+		Log.d(TAG, "onResume()");
 		this.setFragmentsInViewPager();
 		super.onResume();
 	}
 
 	// ここからViewPager
 	private void setFragmentsInViewPager() {
-		Log.d("PlayFragment: ", "setFragmentsInViewPager(): ");
+		Log.d(TAG, "setFragmentsInViewPager(): ");
 		ViewPager viewPager = getView().findViewById(R.id.playViewPager);
 		FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
 		PlayFragmentPagerAdapter adapter = new PlayFragmentPagerAdapter(fragmentManager);
 		viewPager.setAdapter(adapter);
 		viewPager.setCurrentItem(1);
-		Log.d("PlayFragment: ", "setFragmentsInViewPager(): " + viewPager.getAdapter());
+		Log.d(TAG, "setFragmentsInViewPager(): " + viewPager.getAdapter());
 	}
 
 
@@ -84,7 +85,7 @@ public class PlayFragment extends Fragment {
 
 		@Override
 		public Fragment getItem(int position) {
-			Log.d("PlayFragment: ", "PagerAdapter: getItem: " + position);
+			Log.d(TAG, "PagerAdapter: getItem: " + position);
 			Fragment fragment = null;
 			switch (position) {
 				case 0:

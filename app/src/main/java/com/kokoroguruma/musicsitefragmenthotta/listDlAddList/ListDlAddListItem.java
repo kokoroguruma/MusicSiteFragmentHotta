@@ -7,6 +7,7 @@ import android.widget.Button;
  */
 
 public class ListDlAddListItem {
+	private final static String TAG = ListDlAddListItem.class.getSimpleName();
 
 
 	private int musicId;

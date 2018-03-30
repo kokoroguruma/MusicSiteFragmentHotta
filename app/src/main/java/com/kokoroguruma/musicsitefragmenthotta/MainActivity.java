@@ -13,6 +13,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
+	private final static String TAG = MainActivity.class.getSimpleName();
 
 	MyApplication application;
 

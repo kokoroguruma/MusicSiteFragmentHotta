@@ -23,6 +23,7 @@ import java.util.List;
  * A simple {@link Fragment} subclass.
  */
 public class PlayCenterPlayingListFragment extends Fragment {
+	private final static String TAG = PlayCenterPlayingListFragment.class.getSimpleName();
 
 	MyApplication application;
 
@@ -37,7 +38,7 @@ public class PlayCenterPlayingListFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 							 Bundle savedInstanceState) {
 
-		Log.d("PlayCenter: ", "onCreateView(): ");
+		Log.d(TAG, "onCreateView(): ");
 
 		application = (MyApplication) getActivity().getApplication();
 
@@ -48,16 +49,14 @@ public class PlayCenterPlayingListFragment extends Fragment {
 	@Override
 	public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 
-
 		this.setList();
-
 
 		super.onViewCreated(view, savedInstanceState);
 	}
 
 	@Override
 	public void onResume() {
-		Log.d("PlayCenter: ", "onResume(): ");
+		Log.d(TAG, "onResume(): ");
 
 
 

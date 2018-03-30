@@ -9,6 +9,8 @@ import java.io.IOException;
  */
 
 public class MediaPlayerData {
+	private final static String TAG = MediaPlayerData.class.getSimpleName();
+
 	private MediaPlayer mediaPlayer;
 	private int musicId;
 	private String musicName;

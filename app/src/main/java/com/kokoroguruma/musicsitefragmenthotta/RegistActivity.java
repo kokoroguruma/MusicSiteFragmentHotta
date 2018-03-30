@@ -19,6 +19,7 @@ import java.util.Map;
  * 新規ユーザー登録が出来る。
  */
 public class RegistActivity extends AppCompatActivity {
+	private final static String TAG = RegistActivity.class.getSimpleName();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -70,8 +71,8 @@ public class RegistActivity extends AppCompatActivity {
 				Access access = new Access(addAccessUrl);
 				String jsonData = access.startAcsess();
 
-				Map<String, Object> resultMap = access.currentJsonParser(jsonData);
-				Log.d("RegistActivity: ", "onClickRegistSubmitButton(): onClick(): resultMap: " + resultMap);
+				Map<String, Object> resultMap = access.jsonObjectParser(jsonData);
+				Log.d(TAG, "onClickRegistSubmitButton(): onClick(): resultMap: " + resultMap);
 
 
 				if (resultMap.get("sucsess").equals("1")) {

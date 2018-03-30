@@ -19,6 +19,7 @@ import java.util.ArrayList;
  */
 
 public class ListDlAddListAdapter extends BaseAdapter {
+	private final static String TAG = ListDlAddListAdapter.class.getSimpleName();
 
 	Context context;
 	int resource;
@@ -70,7 +71,7 @@ public class ListDlAddListAdapter extends BaseAdapter {
 		dlAddButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Log.d("ListDlAddListAdapter: ", "listDlAddButton押された。" + v.getTag());
+				Log.d(TAG, "listDlAddButton押された。" + v.getTag());
 				// 音声ファイルの再生リストへ追加
 			}
 		});

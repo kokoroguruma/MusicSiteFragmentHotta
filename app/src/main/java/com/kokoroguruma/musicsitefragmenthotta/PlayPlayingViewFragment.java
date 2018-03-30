@@ -1,10 +1,14 @@
 package com.kokoroguruma.musicsitefragmenthotta;
 
 
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -25,8 +29,11 @@ import java.io.IOException;
  * A simple {@link Fragment} subclass.
  */
 public class PlayPlayingViewFragment extends Fragment {
+	private final static String TAG = PlayPlayingViewFragment.class.getSimpleName();
 
 	MyApplication application;
+
+	private Intent musicPlayServiceIntent;
 
 	public PlayPlayingViewFragment() {
 		// Required empty public constructor
@@ -47,9 +54,13 @@ public class PlayPlayingViewFragment extends Fragment {
 
 		this.onClickList();
 
+
+		// 音声サービスの開始。
+		application.startMusicPlyaService(application);
+		musicPlayServiceIntent = new Intent(application, MusicPlayService.class);
+
 		super.onResume();
 	}
-
 
 
 
@@ -68,26 +79,59 @@ public class PlayPlayingViewFragment extends Fragment {
 		button.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Log.d("PlayPlaingView-ment: ", "onClickBack(): ");
-				// TODO: Backボタン処理
+				Log.d(TAG, "onClickBack(): ");
+
+				ServiceConnection serviceConnection = new ServiceConnection() {
+					@Override
+					public void onServiceConnected(ComponentName name, IBinder service) {
+						Log.d(TAG, "onClickPlayingBackButton(): on-Connected: ComponentName: " + name);
+						Log.d(TAG, "onClickPlayingBackButton(): on-Connected: IBinder: " + service);
+						Log.d(TAG, "onClickPlayingBackButton(): on-Connected: GetClass: " + service.getClass());
+
+						MusicPlayService musicPlayService = ((MusicPlayService.MusicPlayServiceBinder) service).getService();
+						musicPlayService.musicBack();
+					}
+
+					@Override
+					public void onServiceDisconnected(ComponentName name) {
+						Log.d(TAG, "onClickPlayingBackButton(): on-Disonnected: ComponentName: " + name);
+
+					}
+				};
+
+				application.bindService(musicPlayServiceIntent, serviceConnection, Context.BIND_AUTO_CREATE);
+
+
 			}
 		});
 	}
-	MediaPlayer mediaPlayer;
+
 	private void onClickPlayingPlayButton() {
 		Button button = getView().findViewById(R.id.playingPlayButton);
 		button.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Log.d("PlayPlaingView-ment: ", "onClickPlay(): ");
-				// TODO: Playボタン処理
+				Log.d(TAG, "onClickPlayingPlayButton(): ");
 
+				ServiceConnection serviceConnection = new ServiceConnection() {
+					@Override
+					public void onServiceConnected(ComponentName name, IBinder service) {
+						Log.d(TAG, "onClickPlayingPlayButton(): on-Connected: ComponentName: " + name);
+						Log.d(TAG, "onClickPlayingPlayButton(): on-Connected: IBinder: " + service);
+						Log.d(TAG, "onClickPlayingPlayButton(): on-Connected: GetClass: " + service.getClass());
 
-//				application.startMusicPlyaService(application.getMainActivity());
-				application.startMusicPlyaService(application.getBaseContext());
+						MusicPlayService musicPlayService = ((MusicPlayService.MusicPlayServiceBinder) service).getService();
+						musicPlayService.musicStart();
+					}
 
-//				Intent intent = new Intent(getActivity(), MusicPlayService.class);
-//				getActivity().startService(intent);
+					@Override
+					public void onServiceDisconnected(ComponentName name) {
+						Log.d(TAG, "onClickPlayingPlayButton(): on-Disonnected: ComponentName: " + name);
+
+					}
+				};
+
+				application.bindService(musicPlayServiceIntent, serviceConnection, Context.BIND_AUTO_CREATE);
 
 			}
 		});
@@ -98,13 +142,27 @@ public class PlayPlayingViewFragment extends Fragment {
 		button.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Log.d("PlayPlaingView-ment: ", "onClickStop(): ");
-				// TODO: Stopボタン処理
+				Log.d(TAG, "onClickStop(): ");
 
+				ServiceConnection serviceConnection = new ServiceConnection() {
+					@Override
+					public void onServiceConnected(ComponentName name, IBinder service) {
+						Log.d(TAG, "onClickPlayingStopButton(): on-Connected: ComponentName: " + name);
+						Log.d(TAG, "onClickPlayingStopButton(): on-Connected: IBinder: " + service);
+						Log.d(TAG, "onClickPlayingStopButton(): on-Connected: GetClass: " + service.getClass());
 
+						MusicPlayService musicPlayService = ((MusicPlayService.MusicPlayServiceBinder) service).getService();
+						musicPlayService.musicStop();
+					}
 
-				Intent intent = new Intent(getActivity(), MusicPlayService.class);
-				getActivity().stopService(intent);
+					@Override
+					public void onServiceDisconnected(ComponentName name) {
+						Log.d(TAG, "onClickPlayingStopButton(): on-Disonnected: ComponentName: " + name);
+
+					}
+				};
+
+				application.bindService(musicPlayServiceIntent, serviceConnection, Context.BIND_AUTO_CREATE);
 
 			}
 		});
@@ -115,8 +173,28 @@ public class PlayPlayingViewFragment extends Fragment {
 		button.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Log.d("PlayPlaingView-ment: ", "onClickPause(): ");
-				// TODO: Pauseボタン処理
+				Log.d(TAG, "onClickPause(): ");
+
+				ServiceConnection serviceConnection = new ServiceConnection() {
+					@Override
+					public void onServiceConnected(ComponentName name, IBinder service) {
+						Log.d(TAG, "onClickPlayingPauseButton(): on-Connected: ComponentName: " + name);
+						Log.d(TAG, "onClickPlayingPauseButton(): on-Connected: IBinder: " + service);
+						Log.d(TAG, "onClickPlayingPauseButton(): on-Connected: GetClass: " + service.getClass());
+
+						MusicPlayService musicPlayService = ((MusicPlayService.MusicPlayServiceBinder) service).getService();
+						musicPlayService.musicPause();
+					}
+
+					@Override
+					public void onServiceDisconnected(ComponentName name) {
+						Log.d(TAG, "onClickPlayingPauseButton(): on-Disonnected: ComponentName: " + name);
+
+					}
+				};
+
+				application.bindService(musicPlayServiceIntent, serviceConnection, Context.BIND_AUTO_CREATE);
+
 			}
 		});
 	}
@@ -127,7 +205,27 @@ public class PlayPlayingViewFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				Log.d("PlayPlaingView-ment: ", "onClickNext(): ");
-				// TODO: Nextボタン処理
+
+				ServiceConnection serviceConnection = new ServiceConnection() {
+					@Override
+					public void onServiceConnected(ComponentName name, IBinder service) {
+						Log.d("PlayPlaingView-ment: ", "onClickPlayingNextButton(): on-Connected: ComponentName: " + name);
+						Log.d("PlayPlaingView-ment: ", "onClickPlayingNextButton(): on-Connected: IBinder: " + service);
+						Log.d("PlayPlaingView-ment: ", "onClickPlayingNextButton(): on-Connected: GetClass: " + service.getClass());
+
+						MusicPlayService musicPlayService = ((MusicPlayService.MusicPlayServiceBinder) service).getService();
+						musicPlayService.musicNext();
+					}
+
+					@Override
+					public void onServiceDisconnected(ComponentName name) {
+						Log.d("PlayPlaingView-ment: ", "onClickPlayingNextButton(): on-Disonnected: ComponentName: " + name);
+
+					}
+				};
+
+				application.bindService(musicPlayServiceIntent, serviceConnection, Context.BIND_AUTO_CREATE);
+
 			}
 		});
 	}

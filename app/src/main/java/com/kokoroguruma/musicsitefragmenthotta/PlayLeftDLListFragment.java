@@ -11,12 +11,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.kokoroguruma.musicsitefragmenthotta.access.Access;
 import com.kokoroguruma.musicsitefragmenthotta.listDlAddList.ListDlAddListAdapter;
 import com.kokoroguruma.musicsitefragmenthotta.listDlAddList.ListDlAddListItem;
 import com.kokoroguruma.musicsitefragmenthotta.listPlayCenterList.ListPlayCenterListItem;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -26,6 +28,7 @@ import java.util.List;
  * A simple {@link Fragment} subclass.
  */
 public class PlayLeftDLListFragment extends Fragment {
+	private final static String TAG = PlayLeftDLListFragment.class.getSimpleName();
 
 	MyApplication application;
 
@@ -65,10 +68,11 @@ public class PlayLeftDLListFragment extends Fragment {
 		this.setList();
 	}
 
+	// 検索ボタン
 	private void onClickPlayLeftSearchButton() {
-		Log.d("PlayLeft-Fragment: ", "onClickPlay-SearchButton: v(): " + getView());
+		Log.d(TAG, "onClickPlay-SearchButton: v(): " + getView());
 		Button button = getView().findViewById(R.id.playLeftSearchButton);
-		Log.d("PlayLeft-Fragment: ", "onClickPlay-SearchButton: button: " + getView().findViewById(R.id.playLeftSearchButton));
+		Log.d(TAG, "onClickPlay-SearchButton: button: " + getView().findViewById(R.id.playLeftSearchButton));
 		button.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -77,8 +81,17 @@ public class PlayLeftDLListFragment extends Fragment {
 		});
 	}
 
+	// リストのデフォルト表示
 	private void setList() {
 		ListView listView = getView().findViewById(R.id.playLeftList);
+
+
+		String addUrl = "searchMusic?s_pass=" + application.getSPass();
+		Access access = new Access(addUrl);
+		String jsonData = access.startAcsess();
+
+		Map<String, Object> resultMap = access.jsonObjectParser(jsonData);
+System.out.println(resultMap);
 
 
 		// TODO: Listデータの引き出し。
@@ -96,11 +109,11 @@ public class PlayLeftDLListFragment extends Fragment {
 	private void updateList() {
 		// TODO: 検索機能。Listをアップデート
 
-		Log.d("PlayLeft-Fragment: ", "updateList()");
+		Log.d(TAG, "updateList()");
 		ListView listView = getView().findViewById(R.id.playLeftList);
 
 		ListDlAddListAdapter adapter = (ListDlAddListAdapter) listView.getAdapter();
-		Log.d("PlayLeft-Fragment: ", "updateList(): adapter: " + adapter);
+		Log.d(TAG, "updateList(): adapter: " + adapter);
 
 		ArrayList<ListDlAddListItem> arrayList = new ArrayList<ListDlAddListItem>();
 		for (int i = 0; i < 30; i++) {

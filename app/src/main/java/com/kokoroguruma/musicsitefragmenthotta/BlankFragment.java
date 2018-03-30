@@ -12,6 +12,7 @@ import android.view.ViewGroup;
  * A simple {@link Fragment} subclass.
  */
 public class BlankFragment extends Fragment {
+	private final static String TAG = BlankFragment.class.getSimpleName();
 
 
 	public BlankFragment() {

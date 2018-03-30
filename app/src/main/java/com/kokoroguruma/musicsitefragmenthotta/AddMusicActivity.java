@@ -21,6 +21,7 @@ import java.util.Map;
  * 音声の追加用アクティビティ
  */
 public class AddMusicActivity extends AppCompatActivity {
+	private final static String TAG = AddMusicActivity.class.getSimpleName();
 
 	MyApplication application;
 
@@ -93,8 +94,8 @@ public class AddMusicActivity extends AppCompatActivity {
 				Access access = new Access(addAccessUrl);
 				String jsonData = access.startAcsess();
 
-				Map<String, Object> resultMap = access.currentJsonParser(jsonData);
-				Log.d("AddMusicActivity: ", "onClickAddMusicSubmitButton(): onClick(): resultMap: " + resultMap);
+				Map<String, Object> resultMap = access.jsonObjectParser(jsonData);
+				Log.d(TAG, "onClickAddMusicSubmitButton(): onClick(): resultMap: " + resultMap);
 
 
 				if (resultMap.get("sucsess").equals("1")) {

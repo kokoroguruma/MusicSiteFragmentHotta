@@ -20,6 +20,7 @@ import java.util.ArrayList;
  * A simple {@link Fragment} subclass.
  */
 public class PlayRightCommentListFragment extends Fragment {
+	private final static String TAG = PlayRightCommentListFragment.class.getSimpleName();
 
 
 	public PlayRightCommentListFragment() {
@@ -55,7 +56,7 @@ public class PlayRightCommentListFragment extends Fragment {
 		button.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Log.d("PlayRightCom-Fragment: ", "setClickPlay-AddButton: " + v);
+				Log.d(TAG, "setClickPlay-AddButton: " + v);
 				// TODO: コメント追加
 				updateList();
 			}
