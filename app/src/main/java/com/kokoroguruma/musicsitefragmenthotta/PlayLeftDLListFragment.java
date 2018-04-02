@@ -85,35 +85,39 @@ public class PlayLeftDLListFragment extends Fragment {
 	private void setList() {
 		ListView listView = getView().findViewById(R.id.playLeftList);
 
+		ArrayList<ListDlAddListItem> listDlAddListItemArrayList;
 
 		String addUrl = "searchMusic?s_pass=" + application.getSPass();
 		Access access = new Access(addUrl);
 		String jsonData = access.startAcsess();
 
-		Map<String, Object> resultMap = access.jsonObjectParser(jsonData);
-System.out.println(resultMap);
+		listDlAddListItemArrayList = this.setListDlAddListItemArrayList(access, jsonData);
 
-
-		// TODO: Listデータの引き出し。
-		ArrayList<ListDlAddListItem> arrayList = new ArrayList<ListDlAddListItem>();
-		for (int i = 0; i < 20; i++) {
-			ListDlAddListItem listItem = new ListDlAddListItem(i, "name" + i, "url" + i, "comment" + i);
-			arrayList.add(listItem);
-		}
-
-		ListDlAddListAdapter adapter = new ListDlAddListAdapter(this.getContext(), R.id.playLeftList, arrayList);
+		ListDlAddListAdapter adapter = new ListDlAddListAdapter(this.getContext(), R.id.playLeftList, listDlAddListItemArrayList);
 		listView.setAdapter(adapter);
+
 	}
 
 
 	private void updateList() {
 		// TODO: 検索機能。Listをアップデート
 
-		Log.d(TAG, "updateList()");
+
+		ArrayList<ListDlAddListItem> listDlAddListItemArrayList = new ArrayList<ListDlAddListItem>();
+
 		ListView listView = getView().findViewById(R.id.playLeftList);
 
 		ListDlAddListAdapter adapter = (ListDlAddListAdapter) listView.getAdapter();
 		Log.d(TAG, "updateList(): adapter: " + adapter);
+
+
+		String addUrl = "searchMusic?s_pass=" + application.getSPass();
+		Access access = new Access(addUrl);
+		String jsonData = access.startAcsess();
+
+		listDlAddListItemArrayList = this.setListDlAddListItemArrayList(access, jsonData);
+
+
 
 		ArrayList<ListDlAddListItem> arrayList = new ArrayList<ListDlAddListItem>();
 		for (int i = 0; i < 30; i++) {
@@ -124,6 +128,30 @@ System.out.println(resultMap);
 
 		adapter.updateList(arrayList);
 		adapter.notifyDataSetChanged();
+	}
+
+	private ArrayList<ListDlAddListItem> setListDlAddListItemArrayList(Access access, String rootJsonData) {
+
+		ArrayList<ListDlAddListItem> listDlAddListItemArrayList = new ArrayList<ListDlAddListItem>();
+
+		List<Object> resultList = access.jsonArrayParser(rootJsonData);
+		Log.d(TAG, "setList(): resultList" + resultList.toString());
+
+		for (Object object : resultList) {
+			Map resultMap2 = access.jsonObjectParser(object.toString());
+			Log.d(TAG, "setList(): resultMap2" + resultMap2.toString());
+
+			int musicId = Integer.parseInt(resultMap2.get("musicId").toString());
+			String musicName = resultMap2.get("musicName").toString();
+			String musicUrl = resultMap2.get("musicUrl").toString();
+			String musicComment = resultMap2.get("musicComment").toString();
+
+			ListDlAddListItem listDlAddListItem = new ListDlAddListItem(musicId, musicName, musicUrl, musicComment);
+
+			listDlAddListItemArrayList.add(listDlAddListItem);
+		}
+
+		return listDlAddListItemArrayList;
 	}
 
 

@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.ProgressBar;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -16,6 +17,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -74,11 +76,12 @@ public class Access {
 			Log.d(TAG, "startAcsess(): 時間内に、データが取れなかった。アクセスできなかったよ！");
 		}
 
-
 		Log.d(TAG, "startAcsess(): result: " + result);
 
 		return result.toString();
 	}
+
+	// ここからJSONのパース
 
 	public Map<String, Object> jsonObjectParser(String jsonData) {
 		Log.d(TAG, "jsonObjectParser");
@@ -91,7 +94,6 @@ public class Access {
 				String key = rootKeys.next();
 				resultMap.put(key, root.get(key));
 			}
-
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -99,6 +101,22 @@ public class Access {
 		return resultMap;
 	}
 
+
+	public List<Object> jsonArrayParser(String jsonData) {
+		Log.d(TAG, "jsonArrayParser");
+		List<Object> resultList = new ArrayList<Object>();
+
+		try {
+			JSONArray root = new JSONArray(jsonData);
+			for (int i=0; i<root.length(); i++) {
+				resultList.add(root.get(i));
+			}
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+
+		return resultList;
+	}
 
 
 	class MyAsycTask extends AsyncTask<String, Void, StringBuffer> {
