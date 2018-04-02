@@ -9,7 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.kokoroguruma.musicsitefragmenthotta.access.Access;
 import com.kokoroguruma.musicsitefragmenthotta.listDlAddList.ListDlAddListAdapter;
@@ -70,12 +72,12 @@ public class PlayLeftDLListFragment extends Fragment {
 
 	// 検索ボタン
 	private void onClickPlayLeftSearchButton() {
-		Log.d(TAG, "onClickPlay-SearchButton: v(): " + getView());
+		Log.d(TAG, "onClickPlay-SearchButton: ");
 		Button button = getView().findViewById(R.id.playLeftSearchButton);
-		Log.d(TAG, "onClickPlay-SearchButton: button: " + getView().findViewById(R.id.playLeftSearchButton));
 		button.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				Log.d(TAG, "onClickPlay-SearchButton: onClick(): " + v);
 				updateList();
 			}
 		});
@@ -85,50 +87,41 @@ public class PlayLeftDLListFragment extends Fragment {
 	private void setList() {
 		ListView listView = getView().findViewById(R.id.playLeftList);
 
-		ArrayList<ListDlAddListItem> listDlAddListItemArrayList;
 
 		String addUrl = "searchMusic?s_pass=" + application.getSPass();
 		Access access = new Access(addUrl);
 		String jsonData = access.startAcsess();
 
-		listDlAddListItemArrayList = this.setListDlAddListItemArrayList(access, jsonData);
+		this.application.setListDlAddListItemList(this.setListDlAddListItemArrayList(access, jsonData));
 
-		ListDlAddListAdapter adapter = new ListDlAddListAdapter(this.getContext(), R.id.playLeftList, listDlAddListItemArrayList);
+		ListDlAddListAdapter adapter = new ListDlAddListAdapter(this.getContext(), R.id.playLeftList, this.application.getListDlAddListItemList());
+		adapter.setApplication(this.application);
 		listView.setAdapter(adapter);
-
 	}
 
 
 	private void updateList() {
-		// TODO: 検索機能。Listをアップデート
 
+		String searchStr = "";
+		EditText playLeftSearchText = getView().findViewById(R.id.playLeftSearchText);
+		searchStr = playLeftSearchText.getText().toString();
+		Log.d(TAG, "updateList(): searchStr: " + searchStr);
 
-		ArrayList<ListDlAddListItem> listDlAddListItemArrayList = new ArrayList<ListDlAddListItem>();
+		String addUrl = "searchMusic?s_pass=" + application.getSPass() + "&like=" + searchStr;
+		Access access = new Access(addUrl);
+		String jsonData = access.startAcsess();
+		this.application.setListDlAddListItemList(this.setListDlAddListItemArrayList(access, jsonData));
+
 
 		ListView listView = getView().findViewById(R.id.playLeftList);
-
 		ListDlAddListAdapter adapter = (ListDlAddListAdapter) listView.getAdapter();
 		Log.d(TAG, "updateList(): adapter: " + adapter);
 
-
-		String addUrl = "searchMusic?s_pass=" + application.getSPass();
-		Access access = new Access(addUrl);
-		String jsonData = access.startAcsess();
-
-		listDlAddListItemArrayList = this.setListDlAddListItemArrayList(access, jsonData);
-
-
-
-		ArrayList<ListDlAddListItem> arrayList = new ArrayList<ListDlAddListItem>();
-		for (int i = 0; i < 30; i++) {
-			ListDlAddListItem listItem = new ListDlAddListItem(i, "name2:" + i, "url" + i, "comment" + i);
-			arrayList.add(listItem);
-		}
-
-
-		adapter.updateList(arrayList);
+		adapter.updateList(this.application.getListDlAddListItemList());
 		adapter.notifyDataSetChanged();
 	}
+
+
 
 	private ArrayList<ListDlAddListItem> setListDlAddListItemArrayList(Access access, String rootJsonData) {
 
@@ -152,22 +145,6 @@ public class PlayLeftDLListFragment extends Fragment {
 		}
 
 		return listDlAddListItemArrayList;
-	}
-
-
-	private void tachPlayCenterPlayingListFragment() {
-
-		List<ListPlayCenterListItem> list = application.getListPlayCenterListItemList();
-		list.clear();
-		for (int i=0; i<10; i++) {
-
-			ListPlayCenterListItem item = new ListPlayCenterListItem(i, "name" + i, "url" + i);
-			list.add(item);
-		}
-
-
-
-
 	}
 
 

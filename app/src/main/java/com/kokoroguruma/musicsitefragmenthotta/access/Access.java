@@ -37,9 +37,6 @@ public class Access {
 
 	Boolean acsessFlag = false;
 
-	MyAsycTask myAsycTask;
-
-
 	/**
 	 * アクセス先のアドレス登録
 	 * http://------:8080/----/まではある。

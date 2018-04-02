@@ -9,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.kokoroguruma.musicsitefragmenthotta.MyApplication;
 import com.kokoroguruma.musicsitefragmenthotta.R;
 
 import java.util.ArrayList;
@@ -27,10 +28,20 @@ public class ListPlayCenterListAdapter extends BaseAdapter {
 	LayoutInflater layoutInflater;
 	List<ListPlayCenterListItem> listPlayCenterListItemList;
 
+	MyApplication application;
+
 	public ListPlayCenterListAdapter(Context context, int resource, List<ListPlayCenterListItem> listPlayCenterListItemList) {
 		this.context = context;
 		this.resource = resource;
 		this.layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		this.listPlayCenterListItemList = listPlayCenterListItemList;
+	}
+
+	public void setApplication(MyApplication application) {
+		this.application = application;
+	}
+
+	public void updataList(List<ListPlayCenterListItem> listPlayCenterListItemList) {
 		this.listPlayCenterListItemList = listPlayCenterListItemList;
 	}
 
@@ -51,7 +62,7 @@ public class ListPlayCenterListAdapter extends BaseAdapter {
 	}
 
 	@Override
-	public View getView(int position, View convertView, ViewGroup parent) {
+	public View getView(final int position, View convertView, ViewGroup parent) {
 		if (convertView == null) {
 			convertView = layoutInflater.inflate(R.layout.list_playing_list, parent, false);
 		}
@@ -68,9 +79,10 @@ public class ListPlayCenterListAdapter extends BaseAdapter {
 		deleteButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Log.d(TAG, "listPlayingDeleteButton押された。deleteButton: " + v.getClass());
 				Log.d(TAG, "listPlayingDeleteButton押された。deleteButton: " + v.getTag());
-				// TODO: リスト内のボタン動作。削除する。
+
+				application.deleteListPlayCenterItem(position);
+
 			}
 		});
 
@@ -79,13 +91,15 @@ public class ListPlayCenterListAdapter extends BaseAdapter {
 		playButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Log.d(TAG, "listPlayingPlayButton押された。playButton: " + v.getClass());
 				Log.d(TAG, "listPlayingPlayButton押された。playButton: " + v.getTag());
-				// TODO: リスト内のボタン動作。再生上位へ移動する。
+
+				application.playingListPlayCenterItem(position);
 			}
 		});
 
 
 		return convertView;
 	}
+
+
 }

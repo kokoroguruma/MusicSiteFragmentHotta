@@ -7,9 +7,9 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.IBinder;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.kokoroguruma.musicsitefragmenthotta.access.Access;
+import com.kokoroguruma.musicsitefragmenthotta.listDlAddList.ListDlAddListItem;
 import com.kokoroguruma.musicsitefragmenthotta.listPlayCenterList.ListPlayCenterListItem;
 import com.kokoroguruma.musicsitefragmenthotta.playMusic.MusicPlayService;
 
@@ -26,19 +26,23 @@ public class MyApplication extends Application {
 
 	private MainActivity mainActivity;
 
+	private PlayCenterPlayingListFragment playCenterPlayingListFragment;
+
 	private Boolean loginFlag = false;
 
 	private String userId;
 	private String sPass;
 
 	private List<ListPlayCenterListItem> listPlayCenterListItemList;
+	private List<ListDlAddListItem> listDlAddListItemList;
 
 	private Intent musicPlayServiceIntent;
 
 	@Override
 	public void onCreate() {
 
-		listPlayCenterListItemList = new ArrayList<ListPlayCenterListItem>();
+		this.listPlayCenterListItemList = new ArrayList<ListPlayCenterListItem>();
+		this.listDlAddListItemList = new ArrayList<ListDlAddListItem>();
 
 
 		super.onCreate();
@@ -53,6 +57,14 @@ public class MyApplication extends Application {
 
 	public void setMainActivity(MainActivity mainActivity) {
 		this.mainActivity = mainActivity;
+	}
+
+	public PlayCenterPlayingListFragment getPlayCenterPlayingListFragment() {
+		return playCenterPlayingListFragment;
+	}
+
+	public void setPlayCenterPlayingListFragment(PlayCenterPlayingListFragment playCenterPlayingListFragment) {
+		this.playCenterPlayingListFragment = playCenterPlayingListFragment;
 	}
 
 	public Boolean getLoginFlag() {
@@ -79,13 +91,20 @@ public class MyApplication extends Application {
 		this.listPlayCenterListItemList = listPlayCenterListItemList;
 	}
 
-// /Getter, Setter
+	public List<ListDlAddListItem> getListDlAddListItemList() {
+		return listDlAddListItemList;
+	}
+
+	public void setListDlAddListItemList(List<ListDlAddListItem> listDlAddListItemList) {
+		this.listDlAddListItemList = listDlAddListItemList;
+	}
+
+	// /Getter, Setter
 
 	public void startMusicPlyaService(Context ins_Context) {
 		musicPlayServiceIntent = new Intent(ins_Context, MusicPlayService.class);
 		Log.d(TAG, "startMusicPlayService(): " + musicPlayServiceIntent);
 		startService(musicPlayServiceIntent);
-//		this.bindPlay();
 	}
 
 	public void bindMusicPlayService(ServiceConnection ins_serviceConnection) {
@@ -97,6 +116,50 @@ public class MyApplication extends Application {
 
 	}
 
+	// ここから：List操作
+
+	/**
+	 * 左に表示されるリストから中央のリストに追加する。
+	 * @param ins_position
+	 */
+	public void addListPlayCenterListItemByListDlAddListAdapter(int ins_position) {
+		ListDlAddListItem listDlAddListItem = listDlAddListItemList.get(ins_position);
+
+		ListPlayCenterListItem listPlayCenterListItem = new ListPlayCenterListItem(
+				listDlAddListItem.getMusicId(),
+				listDlAddListItem.getMusicName(),
+				listDlAddListItem.getMusicUrl(),
+				listDlAddListItem.getMusicComment()
+		);
+
+		this.listPlayCenterListItemList.add(listPlayCenterListItem);
+
+		this.playCenterPlayingListFragment.updateList();
+
+		/*
+		FragmentManager fragmentManager = mainActivity.getSupportFragmentManager();
+		PlayCenterPlayingListFragment playCenterPlayingListFragment = (PlayCenterPlayingListFragment) fragmentManager.findFragmentByTag(PlayCenterPlayingListFragment.class.getSimpleName());
+		Log.d(TAG, "addListPlayCen--Adapter: " + playCenterPlayingListFragment);
+
+		playCenterPlayingListFragment.updateList();
+		*/
+	}
+
+	public void deleteListPlayCenterItem(int ins_position) {
+
+		listPlayCenterListItemList.remove(ins_position);
+
+		this.playCenterPlayingListFragment.updateList();
+	}
+
+	public void playingListPlayCenterItem(int ins_position) {
+		// TODO: 音声再生。
+
+
+	}
+
+
+	// ここまで：List操作
 
 
 	// TODO: これは削除予定bind(ServiceConnection s)に変えて　各動作は呼び出し元で

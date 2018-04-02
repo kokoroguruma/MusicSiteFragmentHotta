@@ -27,8 +27,6 @@ public class PlayCenterPlayingListFragment extends Fragment {
 
 	MyApplication application;
 
-	ListPlayCenterListAdapter listPlayCenterListAdapter;
-
 	public PlayCenterPlayingListFragment() {
 		// Required empty public constructor
 	}
@@ -58,6 +56,7 @@ public class PlayCenterPlayingListFragment extends Fragment {
 	public void onResume() {
 		Log.d(TAG, "onResume(): ");
 
+		this.application.setPlayCenterPlayingListFragment(this);
 
 
 		super.onResume();
@@ -68,14 +67,19 @@ public class PlayCenterPlayingListFragment extends Fragment {
 
 		List<ListPlayCenterListItem> listPlayCenterListItemList = application.getListPlayCenterListItemList();
 
-
-		listPlayCenterListAdapter = new ListPlayCenterListAdapter(this.getContext(), R.id.playCenterList, listPlayCenterListItemList);
+		ListPlayCenterListAdapter listPlayCenterListAdapter = new ListPlayCenterListAdapter(this.getContext(), R.id.playCenterList, this.application.getListPlayCenterListItemList());
+		listPlayCenterListAdapter.setApplication(this.application);
 		listView.setAdapter(listPlayCenterListAdapter);
 	}
 
 	public void updateList() {
-		listPlayCenterListAdapter.notifyDataSetChanged();
 
+		ListView listView = getView().findViewById(R.id.playCenterList);
+		ListPlayCenterListAdapter adapter = (ListPlayCenterListAdapter) listView.getAdapter();
+
+		adapter.updataList(this.application.getListPlayCenterListItemList());
+
+		adapter.notifyDataSetChanged();
 	}
 
 
