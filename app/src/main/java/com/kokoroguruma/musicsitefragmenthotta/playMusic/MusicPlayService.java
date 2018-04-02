@@ -64,14 +64,17 @@ public class MusicPlayService extends Service {
 	public int onStartCommand(Intent intent, int flags, int startId) {
 		Log.d(TAG, "onStartCommand(): ");
 
+		this.playMusics = new PlayMusics();
+
 		// TODO: これはテストです。修正すべし。音声ファイルの仮置き
+		/*
 		String url = "http://www.ne.jp/asahi/music/myuu/wave/menuettm.mp3";
 		try {
 			this.playMusics = new PlayMusics(0, "Title", url, "");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
+		*/
 		return super.onStartCommand(intent, flags, startId);
 	}
 
@@ -81,6 +84,11 @@ public class MusicPlayService extends Service {
 		super.onDestroy();
 	}
 
+	public PlayMusics getPlayMusics() {
+		return this.playMusics;
+	}
+
+	// ここからボタン操作でのアクセス。
 
 	public void musicStart() {
 		this.playMusics.start();

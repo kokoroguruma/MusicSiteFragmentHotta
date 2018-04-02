@@ -52,6 +52,8 @@ public class PlayPlayingViewFragment extends Fragment {
 	@Override
 	public void onResume() {
 
+		this.application.setPlayPlayingViewFragment(this);
+
 		this.onClickList();
 
 

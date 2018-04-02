@@ -11,8 +11,11 @@ import android.util.Log;
 import com.kokoroguruma.musicsitefragmenthotta.access.Access;
 import com.kokoroguruma.musicsitefragmenthotta.listDlAddList.ListDlAddListItem;
 import com.kokoroguruma.musicsitefragmenthotta.listPlayCenterList.ListPlayCenterListItem;
+import com.kokoroguruma.musicsitefragmenthotta.playMusic.MediaPlayerData;
 import com.kokoroguruma.musicsitefragmenthotta.playMusic.MusicPlayService;
+import com.kokoroguruma.musicsitefragmenthotta.playMusic.PlayMusics;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +29,7 @@ public class MyApplication extends Application {
 
 	private MainActivity mainActivity;
 
+	private PlayPlayingViewFragment playPlayingViewFragment;
 	private PlayCenterPlayingListFragment playCenterPlayingListFragment;
 
 	private Boolean loginFlag = false;
@@ -35,6 +39,8 @@ public class MyApplication extends Application {
 
 	private List<ListPlayCenterListItem> listPlayCenterListItemList;
 	private List<ListDlAddListItem> listDlAddListItemList;
+
+	PlayMusics playMusics;
 
 	private Intent musicPlayServiceIntent;
 
@@ -65,6 +71,14 @@ public class MyApplication extends Application {
 
 	public void setPlayCenterPlayingListFragment(PlayCenterPlayingListFragment playCenterPlayingListFragment) {
 		this.playCenterPlayingListFragment = playCenterPlayingListFragment;
+	}
+
+	public PlayPlayingViewFragment getPlayPlayingViewFragment() {
+		return playPlayingViewFragment;
+	}
+
+	public void setPlayPlayingViewFragment(PlayPlayingViewFragment playPlayingViewFragment) {
+		this.playPlayingViewFragment = playPlayingViewFragment;
 	}
 
 	public Boolean getLoginFlag() {
@@ -135,6 +149,34 @@ public class MyApplication extends Application {
 		this.listPlayCenterListItemList.add(listPlayCenterListItem);
 
 		this.playCenterPlayingListFragment.updateList();
+
+		// TODO: PlayMusicsをBindサービスで撮ってきて追加追加
+		try {
+			MediaPlayerData mediaPlayerData = new MediaPlayerData(
+					listDlAddListItem.getMusicId(),
+					listDlAddListItem.getMusicName(),
+					listDlAddListItem.getMusicUrl(),
+					listDlAddListItem.getMusicComment()
+			);
+
+			ServiceConnection serviceConnection = new ServiceConnection() {
+				@Override
+				public void onServiceConnected(ComponentName name, IBinder service) {
+					MusicPlayService musicPlayService = ((MusicPlayService.MusicPlayServiceBinder) service).getService();
+					musicPlayService.getPlayMusics(); // TODO: ここ最優先！！！！！！！！！！！
+				}
+
+				@Override
+				public void onServiceDisconnected(ComponentName name) {
+
+				}
+			};
+
+
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
 		/*
 		FragmentManager fragmentManager = mainActivity.getSupportFragmentManager();
